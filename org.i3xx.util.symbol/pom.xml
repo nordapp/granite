@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.i3xx.util</groupId>
+  <artifactId>org.i3xx.util.symbol</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.inceptionYear>2014</project.inceptionYear>
+	<org.i3xx.util.basic.version>0.0.1-SNAPSHOT</org.i3xx.util.basic.version>
+	<org.i3xx.util.platform.version>0.0.1-SNAPSHOT</org.i3xx.util.platform.version>
+	<org.i3xx.util.general.setup.version>0.0.1-SNAPSHOT</org.i3xx.util.general.setup.version>
+  </properties>
+  
+  <parent>
+    <groupId>org.i3xx.project</groupId>
+    <artifactId>parent-project</artifactId>
+    <version>0.0.6-SNAPSHOT</version>
+  </parent>
+  
+  <dependencies>
+	<dependency>
+		<groupId>org.i3xx.util</groupId>
+		<artifactId>org.i3xx.util.platform</artifactId>
+		<version>${org.i3xx.util.platform.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.i3xx.util</groupId>
+		<artifactId>org.i3xx.util.general.setup</artifactId>
+		<version>${org.i3xx.util.general.setup.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>core</artifactId>
+		<version>4.3.0</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<version>2.3.7</version>
+			<extensions>true</extensions>
+			<configuration>
+				<instructions>
+					
+					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+					<Bundle-Name>${project.name}</Bundle-Name>
+					<Bundle-Version>${project.version}</Bundle-Version>
+					<Bundle-Activator></Bundle-Activator>
+					
+					<Export-Package>
+						org.i3xx.util.symbol.service.impl,
+						org.i3xx.util.symbol.service.model
+					</Export-Package>
+					<Import-Package>
+						org.i3xx.util.basic.core;version="${org.i3xx.util.basic.version}",
+						org.i3xx.util.basic.io;version="${org.i3xx.util.basic.version}",
+						org.i3xx.util.basic.platform;version="${org.i3xx.util.basic.version}",
+						org.i3xx.util.general.setup.impl;version="${org.i3xx.util.general.setup.version}",
+						org.i3xx.util.general.setup.model;version="${org.i3xx.util.general.setup.version}",
+						org.osgi.service.blueprint,
+						org.osgi.service.cm,
+						org.osgi.framework,
+						org.slf4j
+					</Import-Package>
+					<Private-Package></Private-Package>
+					<!--<Export-Service></Export-Service>-->
+				</instructions>
+			</configuration>
+		</plugin>
+	</plugins>
+	
+	<resources>
+  		<resource>
+  			<directory></directory>
+  			<includes>
+  				<include>OSGI-INF/**/*.*</include>
+  			</includes>
+  		</resource>
+  	</resources>
+  </build>
+  
+  <name>NordApp OfficeBase :: util :: symbol</name>
+  <description>Provides a symbol to integer mapping that is the base of a lot of servises that work with symbols. A symbol is a, in it's context, unique word. Unlike a GUID or UUID a symbol is human readable and represents something. Symbols are often part of something we call classic artificial intelligence. Once a symbol is mapped to an integer this mapping never changes.</description>
+</project>
+  
