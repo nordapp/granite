@@ -12,7 +12,7 @@ An OSGi bundle, that provides a service with the three basic fields describing a
 
 <b>org.i3xx.util.platform</b>
 
-A service to provide platform dependent code and settings. The interface 'Platform' of the project 'org.i3xx.util.basic' is implemented. Actually there is an implementation for Apache Karaf and the peroperty 'server.home'.
+A service to provide platform dependent code and settings. The interface 'Platform' of the project 'org.i3xx.util.basic' is implemented. Actually there is an implementation for Apache Karaf and the property 'server.home'.
 
 <b>org.i3xx.util.store</b>
 
