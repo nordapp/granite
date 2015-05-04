@@ -1,5 +1,5 @@
 # util
-Core repository
+Utilities. 
 
 This repository contains utility projects to support the build process and
 basic utility bundles.
