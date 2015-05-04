@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.i3xx.project</groupId>
+  <artifactId>parent-project</artifactId>
+  <versioning>
+    <versions>
+      <version>0.0.6-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20150423144506</lastUpdated>
+  </versioning>
+</metadata>
