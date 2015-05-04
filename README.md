@@ -1,5 +1,5 @@
 # util
-Utilities. 
+Utility bundles to be used standalone. 
 
 This repository contains utility projects to support the build process and
 basic utility bundles.
