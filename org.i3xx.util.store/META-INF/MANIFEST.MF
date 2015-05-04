@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Controlled file storage
+Bundle-SymbolicName: org.i3xx.util.store
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Activator: 
+Import-Package: org.osgi.framework
+Export-Package: org.i3xx.util.store
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: i3xx
+
+
