@@ -46,15 +46,21 @@ public class SymbolFileLocationServiceImpl implements SymbolFileLocationService 
 		Setup setup = setupService.getGeneralSetup();
 		String _root = Setup.setCurrentId(setup.getRoot(), "");
 		FilePath resLoc = null;
+		logger.debug("Root entry of the general setup: {}", _root);
 		if(_root.startsWith(".")){
 			String home = (String)platform.getObject(AvailableKeys.SERVER_HOME);
 			resLoc = FilePath.get(home).add(_root.substring(1));
 		}else{
 			resLoc = FilePath.get(_root);
 		}
+		logger.debug("Path of the general setup: {}", resLoc.getPath());
+		File parent = resLoc.toFile();
+		if( ! parent.exists() ) {
+			parent.mkdirs();
+		}
 		
 		//create file
-		File file = new File(resLoc.toFile(), "symbol.dat");
+		File file = new File(parent, "symbol.dat");
 		if( ! file.exists() )
 			file.createNewFile();
 		
