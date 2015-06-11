@@ -58,12 +58,12 @@
 				<licenseName>apache_v2</licenseName>
 			</configuration>
 			<executions>
-				<!--<execution>
+				<execution>
 					<id>update-project-license</id>
 					<goals>
 						<goal>update-project-license</goal>
 					</goals>
-				</execution>-->
+				</execution>
 				<execution>
 					<id>update-file-header</id>
 					<goals>
