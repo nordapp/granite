@@ -16,8 +16,6 @@
   	<project.organizationName>I.D.S. DialogSysteme GmbH</project.organizationName>
   	<project.params.location>file:///d:/.params</project.params.location>
   	
-  	<project.util.basic.version>0.0.1-SNAPSHOT</project.util.basic.version>
-  	<project.test.workspace.version>0.1.4-SNAPSHOT</project.test.workspace.version>
   	<project.inceptionYear>2014</project.inceptionYear>
   </properties>
   
@@ -207,12 +205,12 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!--<dependency>
       <groupId>org.i3xx.eclipse.test</groupId>
       <artifactId>workspace</artifactId>
       <version>${project.test.workspace.version}</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>-->
   </dependencies>
   
   <distributionManagement>
