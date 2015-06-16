@@ -62,19 +62,6 @@
       </licenses>
     </dependency>
     <dependency>
-      <groupId>org.i3xx.util</groupId>
-      <artifactId>org.i3xx.util.basic</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <licenses>
-        <license>
-          <name>Apache License, Version 2.0</name>
-          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-          <distribution>repo</distribution>
-          <comments>A business-friendly OSS license</comments>
-        </license>
-      </licenses>
-    </dependency>
-    <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>core</artifactId>
       <version>4.3.0</version>
