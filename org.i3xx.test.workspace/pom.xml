@@ -14,9 +14,9 @@
   </properties>
   
   <parent>
-    <groupId>org.i3xx.project</groupId>
-    <artifactId>factory-project</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <groupId>org.i3xx.parent</groupId>
+    <artifactId>parent-project</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
   </parent>  
   
   <licenses>
