@@ -176,12 +176,6 @@
   </build>
   
   <dependencies>
-  	<!-- Basic utilities and tools -->
-  	<dependency>
-  		<groupId>org.i3xx.util</groupId>
-  		<artifactId>org.i3xx.util.basic</artifactId>
-  		<version>${project.util.basic.version}</version>
-  	</dependency>
   	
   	<!-- OSGi core -->
 	<dependency>
