@@ -9,10 +9,15 @@
   <description>Basic tools and utilities - replace the util :: core bundle to avoid dependencies. This bundle should not have dependencies, but defines some core interfaces and techniques.</description>
   
   <properties>
-  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<project.organizationName>I.D.S. DialogSysteme GmbH</project.organizationName>
   	<project.inceptionYear>2015</project.inceptionYear>
   </properties>
+  
+  <!-- Basic utilities and tools -->
+  <parent>
+    <groupId>org.i3xx.parent</groupId>
+    <artifactId>parent-project</artifactId>
+    <version>0.0.6-SNAPSHOT</version>
+  </parent>
   
   <dependencies>
   </dependencies>
