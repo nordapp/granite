@@ -108,10 +108,19 @@
     </div>
     <div class="col-md-3 col-sm-4 col-xs-12">
       <div class="input-group" style="margin-bottom: 5px;">
-				<input type="text" class="form-control" id="projectSearch" placeholder="Search...">
-				<span class="input-group-btn">
-					<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Search</span></button>
-				</span>
+				<script>
+  (function() {
+    var cx = '005703438322411770421:5mgshgrgx2u';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+		  <gcse:searchbox-only></gcse:searchbox-only>
 			</div>
 			<a role="button" class="btn btn-block btn-default btn-xs" href="/foundation/governance/">The Apache Way</a>
 			<a role="button" class="btn btn-block btn-default btn-xs" href="https://community.apache.org/contributors/">Contribute</a>

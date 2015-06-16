@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><licenseSummary>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<licenseSummary>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

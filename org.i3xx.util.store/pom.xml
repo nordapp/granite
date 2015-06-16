@@ -89,6 +89,7 @@
 	</plugins>
   </build>
   <packaging>bundle</packaging>
+  
   <dependencies>
   	<dependency>
   		<groupId>org.osgi</groupId>

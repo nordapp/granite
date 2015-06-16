@@ -3,6 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- <groupId>org.i3xx.project</groupId> -->
+  <groupId>org.i3xx.parent</groupId>
   <artifactId>parent-project</artifactId>
   <version>0.0.6-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -11,18 +12,15 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-  	<project.factory.version>0.0.3-SNAPSHOT</project.factory.version>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.organizationName>I.D.S. DialogSysteme GmbH</project.organizationName>
+  	<project.params.location>file:///d:/.params</project.params.location>
+  	
   	<project.parent.version>0.0.6-SNAPSHOT</project.parent.version>
   	<project.util.basic.version>0.0.1-SNAPSHOT</project.util.basic.version>
   	<project.test.workspace.version>0.1.4-SNAPSHOT</project.test.workspace.version>
   	<project.inceptionYear>2014</project.inceptionYear>
   </properties>
-  
-  <parent>
-    <groupId>org.i3xx.project</groupId>
-    <artifactId>factory-project</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
-  </parent>  
   
   <licenses>
     <license>
@@ -38,6 +36,44 @@
   
   <build>
 	<plugins>
+	
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.9</version>
+			<configuration>
+				<forkMode>once</forkMode>
+			</configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+		   <artifactId>maven-deploy-plugin</artifactId>
+		   <version>2.8.2</version>
+		   <configuration>
+		      <skip>true</skip>
+		   </configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.sonatype.plugins</groupId>
+		   <artifactId>nexus-staging-maven-plugin</artifactId>
+		   <version>1.6.3</version>
+		   <executions>
+		      <execution>
+		         <id>default-deploy</id>
+		         <phase>deploy</phase>
+		         <goals>
+		            <goal>deploy</goal>
+		         </goals>
+		      </execution>
+		   </executions>
+		   <configuration>
+		      <serverId>nexus</serverId>
+		      <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+		      <skipStaging>true</skipStaging>
+		   </configuration>
+		</plugin>
 		
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
@@ -82,6 +118,7 @@
 	
 	<pluginManagement>
 		<plugins>
+		
 			<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 			<plugin>
 				<groupId>org.eclipse.m2e</groupId>
@@ -98,6 +135,9 @@
 									</artifactId>
 									<versionRange>[1.8,)</versionRange>
 									<goals>
+										<goal>
+											update-project-license
+										</goal>
 										<goal>update-file-header</goal>
 									</goals>
 								</pluginExecutionFilter>
@@ -109,6 +149,27 @@
 					</lifecycleMappingMetadata>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<executions>
+					<!-- Associate the read-project-properties goal with the initialize phase, to read the properties file. -->
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>${project.params.location}/build-version.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 	</pluginManagement>
 	
@@ -121,6 +182,13 @@
   		<artifactId>org.i3xx.util.basic</artifactId>
   		<version>${project.util.basic.version}</version>
   	</dependency>
+  	
+  	<!-- OSGi core -->
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>core</artifactId>
+		<version>4.3.0</version>
+	</dependency>
   
 	<!-- Logging -->
 	<dependency>
@@ -153,5 +221,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <distributionManagement>
+	<snapshotRepository>
+		<id>nexus-snapshots</id>
+		<url>http://dev2:8081/nexus/content/repositories/snapshots</url>
+	</snapshotRepository>
+	<repository>
+		<id>nexus-releases</id>
+		<url>http://dev2:8081/nexus/content/repositories/releases</url>
+	</repository>
+  </distributionManagement>
     
 </project>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata modelVersion="1.1.0">
-  <groupId>org.i3xx.project</groupId>
+  <groupId>org.i3xx.parent</groupId>
   <artifactId>parent-project</artifactId>
   <version>0.0.6-SNAPSHOT</version>
   <versioning>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
-    <lastUpdated>20150423144506</lastUpdated>
+    <lastUpdated>20150616131126</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>pom</extension>
         <value>0.0.6-SNAPSHOT</value>
-        <updated>20150423144506</updated>
+        <updated>20150616131126</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
