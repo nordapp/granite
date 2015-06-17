@@ -19,7 +19,7 @@
   	<project.inceptionYear>2014</project.inceptionYear>
   	
   	<util.basic.version>0.1.0-SNAPSHOT</util.basic.version>
-  	<test.workspace.version>0.1.0-SNAPSHOT</test.workspace.version>
+  	<test.workspace.version>0.1.4-SNAPSHOT</test.workspace.version>
   	<util.general.setup.version>0.1.0-SNAPSHOT</util.general.setup.version>
   	<util.platform.version>0.1.0-SNAPSHOT</util.platform.version>
   	<util.store.version>0.1.0-SNAPSHOT</util.store.version>
