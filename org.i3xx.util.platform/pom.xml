@@ -5,24 +5,30 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <url>http://maven.apache.org</url>
+  <name>NordApp OfficeBase :: util :: platform</name>
+  <description>Provides platform dependent codes.</description>
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.inceptionYear>2014</project.inceptionYear>
-	<org.i3xx.util.basic.version>0.0.1-SNAPSHOT</org.i3xx.util.basic.version>
+  	<build.project.util.basic.version></build.project.util.basic.version>
   </properties>
   
   <parent>
-    <groupId>org.i3xx.project</groupId>
+    <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
   </parent>
   
   <dependencies>
 	<dependency>
 		<groupId>org.osgi</groupId>
 		<artifactId>org.osgi.core</artifactId>
-		<version>4.3.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.i3xx.util</groupId>
+		<artifactId>org.i3xx.util.basic</artifactId>
 	</dependency>
   </dependencies>
   
@@ -46,10 +52,10 @@
 						org.i3xx.util.platform.karaf.impl
 					</Export-Package>
 					<Import-Package>
-						org.i3xx.util.basic.platform;version="${org.i3xx.util.basic.version}",
+						org.i3xx.util.basic.platform;version="${build.project.util.basic.version}",
 						org.osgi.service.blueprint,
 						org.osgi.service.cm,
-						org.osgi.framework,
+						org.osgi.framework;version="${build.project.osgi.core.version},
 						org.slf4j
 					</Import-Package>
 					<Private-Package></Private-Package>
@@ -69,7 +75,5 @@
   	</resources>
   </build>
   
-  <name>NordApp OfficeBase :: util :: platform</name>
-  <description>Provides platform dependent codes.</description>
 </project>
   
