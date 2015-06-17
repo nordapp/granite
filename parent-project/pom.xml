@@ -22,7 +22,7 @@
   	<test.workspace.version>0.1.4-SNAPSHOT</test.workspace.version>
   	<util.general.setup.version>0.1.0-SNAPSHOT</util.general.setup.version>
   	<util.platform.version>0.1.0-SNAPSHOT</util.platform.version>
-  	<util.store.version>0.1.0-SNAPSHOT</util.store.version>
+  	<util.store.version>1.0.4-SNAPSHOT</util.store.version>
   	<util.symbol.version>0.1.0-SNAPSHOT</util.symbol.version>
   	<util.whiteboard.version>0.1.0-SNAPSHOT</util.whiteboard.version>
   </properties>
