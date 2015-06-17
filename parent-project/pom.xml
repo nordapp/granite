@@ -187,11 +187,6 @@
 			<version>${util.basic.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.i3xx.eclipse.test</groupId>
-			<artifactId>workspace</artifactId>
-			<version>${test.workspace.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.i3xx.util</groupId>
 			<artifactId>org.i3xx.util.general.setup</artifactId>
 			<version>${util.general.setup.version}</version>
@@ -210,11 +205,6 @@
 			<groupId>org.i3xx.util</groupId>
 			<artifactId>org.i3xx.util.symbol</artifactId>
 			<version>${util.symbol.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.i3xx.util</groupId>
-			<artifactId>org.i3xx.util.whiteboard</artifactId>
-			<version>${util.whiteboard.version}</version>
 		</dependency>
 	  	
 	  	<!-- OSGi core -->
