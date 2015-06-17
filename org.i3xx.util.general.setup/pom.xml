@@ -11,7 +11,7 @@
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.inceptionYear>2014</project.inceptionYear>
-	<org.i3xx.util.basic.version>0.0.1-SNAPSHOT</org.i3xx.util.basic.version>
+	<org.i3xx.util.basic.version></org.i3xx.util.basic.version>
   </properties>
   
   <parent>
@@ -43,7 +43,7 @@
 						org.i3xx.util.general.setup.model
 					</Export-Package>
 					<Import-Package>
-						org.i3xx.util.basic.platform;version="${org.i3xx.util.basic.version}",
+						<!--org.i3xx.util.basic.platform;version="${org.i3xx.util.basic.version}",-->
 						org.osgi.service.blueprint,
 						org.osgi.service.cm,
 						org.osgi.framework,
