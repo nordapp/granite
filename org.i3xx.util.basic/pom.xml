@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.basic</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>${build.project.util.basic.version}</version>
   <packaging>bundle</packaging>
   <name>NordApp OfficeBase :: util :: basic</name>
   <url>http://maven.apache.org</url>
@@ -20,6 +20,10 @@
   </parent>
   
   <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
   </dependencies>
     
   <build>
