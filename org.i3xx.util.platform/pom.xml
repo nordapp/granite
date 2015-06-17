@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.platform</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <url>http://maven.apache.org</url>
   <name>NordApp OfficeBase :: util :: platform</name>
@@ -11,7 +11,6 @@
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.inceptionYear>2014</project.inceptionYear>
-  	<build.project.util.basic.version></build.project.util.basic.version>
   </properties>
   
   <parent>
@@ -52,10 +51,10 @@
 						org.i3xx.util.platform.karaf.impl
 					</Export-Package>
 					<Import-Package>
-						org.i3xx.util.basic.platform;version="${build.project.util.basic.version}",
+						org.i3xx.util.basic.platform;version="${util.basic.version}",
 						org.osgi.service.blueprint,
 						org.osgi.service.cm,
-						org.osgi.framework;version="${build.project.osgi.core.version},
+						org.osgi.framework;version="${osgi.core.version},
 						org.slf4j
 					</Import-Package>
 					<Private-Package></Private-Package>
