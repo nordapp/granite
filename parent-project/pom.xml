@@ -17,6 +17,14 @@
   	<project.params.location>file:///d:/.params</project.params.location>
   	
   	<project.inceptionYear>2014</project.inceptionYear>
+  	
+  	<build.project.util.basic.version>0.1.0-SNAPSHOT</build.project.util.basic.version>
+  	<build.project.test.workspace.version>0.1.0-SNAPSHOT</build.project.test.workspace.version>
+  	<build.project.util.general.setup.version>0.1.0-SNAPSHOT</build.project.util.general.setup.version>
+  	<build.project.util.platform.version>0.1.0-SNAPSHOT</build.project.util.platform.version>
+  	<build.project.util.store.version>0.1.0-SNAPSHOT</build.project.util.store.version>
+  	<build.project.util.symbol.version>0.1.0-SNAPSHOT</build.project.util.symbol.version>
+  	<build.project.util.whiteboard.version>0.1.0-SNAPSHOT</build.project.util.whiteboard.version>
   </properties>
   
   <licenses>
@@ -175,6 +183,43 @@
   <dependencyManagement>
 	  <dependencies>
 	  	
+	  	<!-- OfficeBase util package -->
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.basic</artifactId>
+			<version>${build.project.util.basic.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.eclipse.test</groupId>
+			<artifactId>workspace</artifactId>
+			<version>${build.project.test.workspace.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.general.setup</artifactId>
+			<version>${build.project.util.general.setup.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.platform</artifactId>
+			<version>${build.project.util.platform.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.store</artifactId>
+			<version>${build.project.util.store.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.symbol</artifactId>
+			<version>${build.project.util.symbol.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.i3xx.util</groupId>
+			<artifactId>org.i3xx.util.whiteboard</artifactId>
+			<version>${build.project.util.whiteboard.version}</version>
+		</dependency>
+	  	
 	  	<!-- OSGi core -->
 		<dependency>
 			<groupId>org.osgi</groupId>
@@ -206,12 +251,12 @@
 	      <version>4.11</version>
 	      <scope>test</scope>
 	    </dependency>
-	    <!--<dependency>
+	    <dependency>
 	      <groupId>org.i3xx.eclipse.test</groupId>
 	      <artifactId>workspace</artifactId>
-	      <version>${project.test.workspace.version}</version>
+	      <version>${build.project.test.workspace.version}</version>
 	      <scope>test</scope>
-	    </dependency>-->
+	    </dependency>
 	  </dependencies>
   </dependencyManagement>
   
