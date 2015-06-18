@@ -244,6 +244,12 @@
 	      <scope>test</scope>
 	    </dependency>
 	    <dependency>
+	      <groupId>org.hamcrest</groupId>
+	      <artifactId>hamcrest-core</artifactId>
+	      <version>1.3</version>
+	      <scope>test</scope>
+	    </dependency>
+	    <dependency>
 	      <groupId>org.i3xx.eclipse.test</groupId>
 	      <artifactId>workspace</artifactId>
 	      <version>${test.workspace.version}</version>
