@@ -81,11 +81,11 @@
 	    <artifactId>junit</artifactId>
 	    <scope>test</scope>
     </dependency>
-	    <dependency>
-	      <groupId>org.i3xx.eclipse.test</groupId>
-	      <artifactId>workspace</artifactId>
-	      <scope>test</scope>
-	    </dependency>
+    <dependency>
+      <groupId>org.i3xx.eclipse.test</groupId>
+      <artifactId>workspace</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
 </project>
