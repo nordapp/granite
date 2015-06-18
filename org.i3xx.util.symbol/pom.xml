@@ -29,10 +29,16 @@
 		<groupId>org.i3xx.util</groupId>
 		<artifactId>org.i3xx.util.general.setup</artifactId>
 	</dependency>
+	
 	<dependency>
 		<groupId>org.osgi</groupId>
 		<artifactId>org.osgi.core</artifactId>
 	</dependency>
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>org.osgi.compendium</artifactId>
+	</dependency>
+	
 	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
