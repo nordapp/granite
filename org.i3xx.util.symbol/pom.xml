@@ -96,6 +96,8 @@
 						org.i3xx.util.basic.core;version="${util.basic.version}",
 						org.i3xx.util.basic.io;version="${util.basic.version}",
 						org.i3xx.util.basic.platform;version="${util.basic.version}",
+						org.i3xx.util.platform.impl;version="${util.platform.version}",
+						org.i3xx.util.platform.karaf.impl;version="${util.platform.version}",
 						org.i3xx.util.general.setup.impl;version="${util.general.setup.version}",
 						org.i3xx.util.general.setup.model;version="${util.general.setup.version}",
 						org.osgi.service.blueprint,
