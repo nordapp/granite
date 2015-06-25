@@ -36,6 +36,10 @@
     </license>
   </licenses>
   
+  <scm>
+  	<developerConnection>scm:git:https://github.com/nordapp</developerConnection>
+  </scm>
+    
   <build>
 	<plugins>
 	
