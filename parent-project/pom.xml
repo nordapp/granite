@@ -329,15 +329,15 @@
   </dependencyManagement>
   
   <distributionManagement>
-	<snapshotRepository>
-		<id>nexus-snapshots</id>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-	</snapshotRepository>
 	<repository>
 		<id>nexus-releases</id>
 		<!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
 		<url>https://oss.sonatype.org/content/repositories/releases/</url>
 	</repository>
+	<snapshotRepository>
+		<id>nexus-snapshots</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+	</snapshotRepository>
   </distributionManagement>
     
 </project>
