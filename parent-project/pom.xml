@@ -37,7 +37,7 @@
   </licenses>
   
   <scm>
-  	<developerConnection>scm:git:https://github.com/nordapp</developerConnection>
+  	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
   </scm>
     
   <build>
