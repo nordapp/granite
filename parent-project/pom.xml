@@ -72,27 +72,18 @@
 			<artifactId>versions-maven-plugin</artifactId>
 		</plugin>
 		
-		<!--
 		<plugin>
 		   <groupId>org.sonatype.plugins</groupId>
 		   <artifactId>nexus-staging-maven-plugin</artifactId>
 		   <version>1.6.3</version>
-		   <executions>
-		      <execution>
-		         <id>default-deploy</id>
-		         <phase>deploy</phase>
-		         <goals>
-		            <goal>deploy</goal>
-		         </goals>
-		      </execution>
-		   </executions>
+		   <extensions>true</extensions>
 		   <configuration>
-		      <serverId>nexus</serverId>
-		      <nexusUrl>https://oss.sonatype.org/content/repositories/releases</nexusUrl>
-		      <skipStaging>true</skipStaging>
+		   	 <serverId>ossrh</serverId>
+		   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
 		   </configuration>
 		</plugin>
-		-->
+
 		
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
@@ -342,14 +333,14 @@
   </dependencyManagement>
   
   <distributionManagement>
-	<repository>
-		<id>oss-releases</id>
-		<url>https://oss.sonatype.org/content/repositories/releases/</url>
-	</repository>
 	<snapshotRepository>
-		<id>oss-snapshots</id>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 	</snapshotRepository>
+	<repository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+	</repository>
   </distributionManagement>
     
 </project>
