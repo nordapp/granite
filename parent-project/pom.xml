@@ -338,16 +338,5 @@
 	    </dependency>
 	  </dependencies>
   </dependencyManagement>
-  
-  <distributionManagement>
-	<repository>
-		<id>oss-releases</id>
-		<url>https://oss.sonatype.org/content/repositories/releases/</url>
-	</repository>
-	<snapshotRepository>
-		<id>oss-snapshots</id>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-	</snapshotRepository>
-  </distributionManagement>
     
 </project>
