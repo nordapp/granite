@@ -72,6 +72,7 @@
 			<artifactId>versions-maven-plugin</artifactId>
 		</plugin>
 		
+		<!--
 		<plugin>
 		   <groupId>org.sonatype.plugins</groupId>
 		   <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -91,6 +92,7 @@
 		      <skipStaging>true</skipStaging>
 		   </configuration>
 		</plugin>
+		-->
 		
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
@@ -338,5 +340,16 @@
 	    </dependency>
 	  </dependencies>
   </dependencyManagement>
+  
+  <distributionManagement>
+	<repository>
+		<id>oss-releases</id>
+		<url>https://oss.sonatype.org/content/repositories/releases/</url>
+	</repository>
+	<snapshotRepository>
+		<id>oss-snapshots</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+	</snapshotRepository>
+  </distributionManagement>
     
 </project>
