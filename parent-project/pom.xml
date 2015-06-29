@@ -9,6 +9,7 @@
 
   <name>parent-project</name>
   <url>http://maven.apache.org</url>
+  <description>The parent (super) POM</description>
 
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,10 +36,22 @@
   </licenses>
   
   <scm>
+    <tag>HEAD</tag>
+  	<url>scm:git:https://github.com/nordapp/util</url>
+  	<connection>scm:git:https://github.com/nordapp/util</connection>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>parent-project-0.2.0</tag>
   </scm>
-    
+  
+  <developers>
+    <developer>
+      <id>Stefan-Hauptmann</id>
+      <name>Stefan Hauptmann</name>
+      <url>http://www.nordapp.org</url>
+      <organization>I.D.S. DialogSysteme GmbH</organization>
+      <organizationUrl>http://www.nordapp.org</organizationUrl>
+    </developer>
+  </developers>
+      
   <build>
 	<plugins>
 	
@@ -78,9 +91,9 @@
 		   <extensions>true</extensions>
 		   <configuration>
 		   	 <serverId>ossrh</serverId>
-		   	 <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
-		   	 <stagingProfileId>1296f79efe04a4d0</stagingProfileId>
-		   	 <!-- <nexusUrl>https://oss.sonatype.org/</nexusUrl> -->
+		   	 <!-- <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+		   	 <stagingProfileId>1296f79efe04a4d0</stagingProfileId> -->
+		   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
 		   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
 		   </configuration>
 		</plugin>
@@ -353,18 +366,18 @@
   </dependencyManagement>
   
   <distributionManagement>
-	<!-- <snapshotRepository>
+	<snapshotRepository>
 		<id>ossrh</id>
 		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-	</snapshotRepository> -->
-	<snapshotRepository>
+	</snapshotRepository>
+	<!-- <snapshotRepository>
     	<id>ossrh</id>
     	<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <!-- <repository>
+    </snapshotRepository> -->
+    <repository>
 		<id>ossrh</id>
 		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-	</repository> -->
+	</repository>
 	
   </distributionManagement>
   
