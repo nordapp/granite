@@ -78,7 +78,9 @@
 		   <extensions>true</extensions>
 		   <configuration>
 		   	 <serverId>ossrh</serverId>
-		   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		   	 <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+		   	 <stagingProfileId>1296f79efe04a4d0</stagingProfileId>
+		   	 <!-- <nexusUrl>https://oss.sonatype.org/</nexusUrl> -->
 		   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
 		   </configuration>
 		</plugin>
@@ -351,14 +353,19 @@
   </dependencyManagement>
   
   <distributionManagement>
-	<snapshotRepository>
+	<!-- <snapshotRepository>
 		<id>ossrh</id>
 		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-	</snapshotRepository>
-	<repository>
+	</snapshotRepository> -->
+	<snapshotRepository>
+    	<id>ossrh</id>
+    	<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <!-- <repository>
 		<id>ossrh</id>
 		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-	</repository>
+	</repository> -->
+	
   </distributionManagement>
   
   <profiles>
