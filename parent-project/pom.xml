@@ -36,7 +36,7 @@
   </licenses>
   
   <scm>
-    <tag>parent-project-0.2.3</tag>
+    <tag>${project.artifactId}-${project.version}</tag>
   	<url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
