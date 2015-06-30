@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.2.3-SNAPSHOT</version>
+    <version>0.2.4</version>
   </parent>
   
   <dependencies>
@@ -72,7 +72,7 @@
 		</plugin>
 		
 	</plugins>
-	
+
   </build>
   
 </project>
