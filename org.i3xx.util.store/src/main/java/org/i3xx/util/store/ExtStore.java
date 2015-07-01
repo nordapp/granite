@@ -62,6 +62,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Stefan
+ * 
+ * To understand the file mechanism, take a look to the inner class Resource
+ * that manages the files.
  *
  */
 public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry, IStoreExport {
@@ -70,7 +73,16 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	
 	public final static String infodir = "info";
 	
+	/**
+	 * The root path of the store
+	 */
 	protected final FilePath path;
+	/**
+	 * The global store is organized as a map that does a store key to map
+	 * binding of a map that does a key to entry mapping. The entry contains
+	 * the data stored in the store and each entry is specified by its store
+	 * id and key id.
+	 */
 	protected final Map<BigInteger, Map<BigInteger, StoreEntry>> trans;
 	/**
 	 * The extern map is a map for a filename mapping. Usually the filename is the id,
@@ -79,7 +91,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	protected final Map<BigInteger, Map<BigInteger, String>> extern;
 	
 	/**
-	 * 
+	 * The root path of the store
 	 */
 	public ExtStore(String path) {
 		super();
@@ -98,6 +110,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
+	 * Loads the data from the info file to the global store.
+	 * 
 	 * @throws IOException
 	 */
 	public synchronized void loadData() throws IOException {
@@ -105,7 +119,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * Loads the data of a single store from the info file.
+	 * 
+	 * @param key The key of the store to load the data
 	 * @throws IOException
 	 */
 	public synchronized void loadData(BigInteger key) throws IOException {
@@ -113,7 +129,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param map
+	 * @param map The map to load the data from the info file to
 	 * @throws IOException
 	 */
 	private void loadData(Map<BigInteger, Map<BigInteger, StoreEntry>> map) throws IOException {
@@ -133,7 +149,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * @param sKey The key of the store to read the info
+	 * @param map The map to put the data to
 	 */
 	private void readInfoFile(BigInteger sKey, Map<BigInteger, Map<BigInteger, StoreEntry>> map) throws IOException {
 		
@@ -185,7 +202,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * Writes the data from a store to the info file
+	 * 
+	 * @param key The key of the store to write
 	 * @throws IOException
 	 */
 	private void writeInfoFile(BigInteger key, Map<BigInteger, Map<BigInteger, StoreEntry>> map) throws IOException {
@@ -223,6 +242,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
+	 * @param key The key of the store to write
 	 * @throws IOException
 	 */
 	public synchronized void unloadData(BigInteger key) throws IOException {
@@ -230,7 +250,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param map
+	 * @param map The global store map to write to the info file
+	 * 
 	 * @throws IOException
 	 */
 	private void unloadData(Map<BigInteger, Map<BigInteger, StoreEntry>> map) throws IOException {
@@ -250,7 +271,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param file
+	 * @param file The file to print the data to
 	 * @throws IOException
 	 */
 	public synchronized void printData(File file) throws IOException {
@@ -301,7 +322,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Copies every missing StoreEntry from mapA to mapB
 	 * 
-	 * @param map
+	 * @param mapA The source map (global store)
+	 * @param mapB The destination map (global store)
 	 * @throws IOException
 	 */
 	private void copyData(Map<BigInteger, Map<BigInteger, StoreEntry>> mapA, Map<BigInteger, Map<BigInteger, StoreEntry>> mapB) throws IOException {
@@ -324,6 +346,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
+	 * Verifies a store
+	 * 
 	 * @throws IOException
 	 */
 	public synchronized void verify() throws IOException {
@@ -334,6 +358,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
+	 * Runs the garbage collector on the global store.
+	 * 
 	 * @throws IOException
 	 */
 	public synchronized void gc() throws IOException {
@@ -367,6 +393,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
+	 * Cleanup the store and deletes everything with the exception
+	 * of the root directory.
+	 * 
 	 * @throws IOException
 	 */
 	public synchronized void cleanup() throws IOException {
@@ -377,17 +406,21 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @return
+	 * Tests whether a store exists
+	 * 
+	 * @param key The key of a single store
+	 * @return True if the store exists, false otherwise.
 	 */
 	public synchronized boolean existStore(BigInteger key) {
 		return trans.containsKey(key);
 	}
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
+	 * Tests whether a store entry exists
+	 * 
+	 * @param key The key of a single store
+	 * @param id The key of a entry
+	 * @return True if the store entry exists, false otherwise.
 	 */
 	public synchronized boolean existStoreEntry(BigInteger key, BigInteger id) throws IOException {
 		Map<BigInteger, StoreEntry> store = trans.get(key);
@@ -400,7 +433,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @return
+	 * Creates a new store
+	 * 
+	 * @return The key id of the new store
 	 * @throws IOException
 	 */
 	public synchronized BigInteger createStore() throws IOException {
@@ -417,7 +452,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @return
+	 * @return A list of all store keys available in the global store.
 	 */
 	public synchronized List<BigInteger> getStoreKeys() {
 		List<BigInteger> list = new ArrayList<BigInteger>();
@@ -427,8 +462,10 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @return
+	 * Creates a new store with the key if the store doesn't exists.
+	 * 
+	 * @param key The key of the store
+	 * @return The key of the store
 	 * @throws IOException
 	 */
 	public synchronized BigInteger createStore(BigInteger key) throws IOException {
@@ -450,8 +487,11 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @return
+	 * Returns a map containing all entries of the store. The sort object as a key
+	 * and the id of the entry as a value.
+	 * 
+	 * @param key The key of the store
+	 * @return The map
 	 * @throws IOException
 	 */
 	public synchronized Map<Object, BigInteger> getSortMap(BigInteger key) throws IOException {
@@ -471,8 +511,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @return
+	 * @param key The key of the store
+	 * @return The list of all id's available in the store.
 	 * @throws IOException
 	 */
 	public synchronized List<BigInteger> getStoreListing(BigInteger key) throws IOException {
@@ -492,7 +532,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * Reorganizes a store.
+	 * 
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	public synchronized void reorganizeStore(BigInteger key) throws IOException {
@@ -500,7 +542,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * Reorganizes a store.
+	 * 
+	 * @param key The key of the store.
 	 * @param order as Object-ID-map 
 	 * @throws IOException
 	 */
@@ -546,9 +590,11 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @param oldId
-	 * @param newId
+	 * Reorganizes a store entry.
+	 * 
+	 * @param key The key of the store.
+	 * @param oldId The current id of the entry
+	 * @param newId The new id of the entry
 	 * @throws IOException
 	 */
 	public synchronized void reorganizeStoreEntry(BigInteger key, BigInteger oldId, BigInteger newId) throws IOException {
@@ -581,7 +627,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Verifies the store and remove outdated or lost files.
 	 * 
-	 * @param key
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	public synchronized void verifyStore(BigInteger key) throws IOException {
@@ -634,7 +680,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * Cleanup a store
+	 * 
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	public synchronized void cleanupStore(BigInteger key) throws IOException {
@@ -645,11 +693,13 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param trans
-	 * @param lifetime
-	 * @param persistent
-	 * @param sort
-	 * @return
+	 * Creates a new store entry
+	 * 
+	 * @param key The key of the store 
+	 * @param lifetime The time to live until the entry exceed
+	 * @param persistent True to mark an entry as persistent (not to be garbage collected).
+	 * @param sort The sort object
+	 * @return The store entry
 	 */
 	public synchronized StoreEntry nextEntry(BigInteger key, long lifetime, boolean persistent, Object sort) throws IOException {
 		
@@ -669,9 +719,11 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
+	 * Gets the store entry and returns an InputStream to read
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the object
+	 * @return The input stream
 	 * @throws IOException
 	 */
 	public synchronized InputStream read(BigInteger key, BigInteger id) throws IOException {
@@ -695,9 +747,11 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
+	 * Gets the store entry and return the content as a String.
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the object
+	 * @return The content as a String
 	 * @throws IOException
 	 */
 	public synchronized String readString(BigInteger key, BigInteger id) throws IOException {
@@ -721,8 +775,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	 * while reorganizing the store. Do not persist the file or it's data.
 	 * The directory file is used to export store entries.
 	 * 
-	 * @param key
-	 * @return
+	 * @param key The key of the store.
+	 * @return The file
 	 * @throws IOException
 	 */
 	public synchronized File getFile(BigInteger key) throws IOException {
@@ -738,9 +792,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	 * Returns a file object that represents a store entry. Note that this file
 	 * can move while reorganizing the store. Do not persist the file or it's data.
 	 * 
-	 * @param key
-	 * @param id
-	 * @return
+	 * @param key The key of the store.
+	 * @param id The id of the store entry
+	 * @return The file
 	 * @throws IOException
 	 */
 	public synchronized File getFile(BigInteger key, BigInteger id) throws IOException {
@@ -767,7 +821,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	 * It is recommended to use the nextEntry mechanism to create a
 	 * store entry.
 	 * 
-	 * @param entry
+	 * @param entry The store entry
 	 * @return The file
 	 * @throws IOException
 	 */
@@ -795,8 +849,10 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param entry
-	 * @return
+	 * Gets an OutputStream to write to a store entry.
+	 * 
+	 * @param entry The store entry
+	 * @return The output stream
 	 * @throws IOException
 	 */
 	public synchronized OutputStream write(StoreEntry entry) throws IOException {
@@ -804,8 +860,10 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param data
-	 * @param entry
+	 * Write string data to a store.
+	 * 
+	 * @param data The data to write
+	 * @param entry The store entry
 	 * @throws IOException
 	 */
 	public synchronized void writeString(String data, StoreEntry entry) throws IOException {
@@ -817,11 +875,12 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * Adds a suffix to each store file that is not intern.
+	 * Adds a suffix to each store file that is not intern. Use the garbage collector
+	 * of the store to remove the entries of the exported files.
 	 * 
-	 * @param key
-	 * @param intern
-	 * @param suffix
+	 * @param key The key of the store
+	 * @param intern The files that should be kept intern
+	 * @param suffix The suffix to add to the filename
 	 * @throws IOException 
 	 */
 	public synchronized void export(BigInteger key, BigInteger[] intern, String suffix) throws IOException {
@@ -844,8 +903,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Return the exported files
 	 * 
-	 * @param key
-	 * @return
+	 * @param key The store
+	 * @return The exported files
 	 * @throws IOException 
 	 */
 	public synchronized File[] getExported(BigInteger key) throws IOException {
@@ -943,8 +1002,10 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @param id
+	 * Cleanup (removes) a store entry and all it's content.
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the entry
 	 * @throws IOException
 	 */
 	public synchronized void cleanupStoreEntry(BigInteger key, BigInteger id) throws IOException {
@@ -976,7 +1037,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Creates the inffile if not available
 	 * 
-	 * @param key
+	 * @param key The key of the store
 	 * @return The new inffile
 	 * @throws IOException
 	 */
@@ -1006,7 +1067,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * @param key The key of the store
 	 */
 	private void cleanupInffile(BigInteger key) {
 		killFile( iStore(key) );
@@ -1023,8 +1084,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Deletes the given directory and all subdirectories
 	 * 
-	 * @param dir
-	 * @param delete
+	 * @param dir The directory to delete with all files and subdirectories.
+	 * @param delete True to delete the directory itself, false otherwise.
 	 * @throws IOException
 	 */
 	private void cleanupDirectory(File dir, boolean delete) throws IOException {
@@ -1046,8 +1107,9 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Deletes the given directory and all subdirectories
 	 * 
-	 * @param dir
-	 * @param delete
+	 * @param key The key of the store
+	 * @param dir The directory to delete with all files and subdirectories.
+	 * @param delete True to delete the directory itself, false otherwise.
 	 * @throws IOException
 	 */
 	private void cleanupDirectory(BigInteger key, File dir, boolean delete) throws IOException {
@@ -1091,7 +1153,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
+	 * @param key The id of the store
 	 */
 	private void cleanupExtern(BigInteger key) {
 		//ensure the files are killed before
@@ -1106,7 +1168,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param file
+	 * @param file The file to kill
 	 */
 	private void killFile(File file) {
 		if(file.exists())
@@ -1117,10 +1179,10 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * Returns the parent directory of the store
+	 * Returns the root directory of the store
 	 * 
 	 * @param key The key of the store
-	 * @return
+	 * @return The root directory of the store
 	 */
 	private File pStore(BigInteger key) {
 		return path.add(key.toString()).toFile();
@@ -1129,8 +1191,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	/**
 	 * Returns the file object of the info file
 	 * 
-	 * @param key
-	 * @return
+	 * @param key The key of the store 
+	 * @return The file object of the info file
 	 */
 	private File iStore(BigInteger key) {
 		return path.add(infodir).add(key.toString()).toFile();
@@ -1159,8 +1221,8 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	}
 	
 	/**
-	 * @param key
-	 * @return
+	 * @param key The key of the store
+	 * @return The next free file id
 	 * @throws IOException
 	 */
 	private BigInteger getFreeFile(BigInteger key) throws IOException {
@@ -1335,6 +1397,12 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 			if(fStore(key, id).getName().equals(value)){
 				//reimport
 				map.remove(id);
+				
+				//TODO:
+				//Maybe needs a fix:
+				//if( ! map.containsKey(id)) {
+				//	map.put(id, value);
+				//}
 			}else{
 				//export
 				map.put(id, value);

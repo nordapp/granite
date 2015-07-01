@@ -30,71 +30,89 @@ import java.math.BigInteger;
 public interface IStoreEntry {
 	
 	/**
-	 * @param key
-	 * @param lifetime
-	 * @param persistent
-	 * @param sort
-	 * @return
-	 * @throws IOException
+	 * Creates a new store entry
+	 * 
+	 * @param key The key of the store 
+	 * @param lifetime The time to live until the entry exceed
+	 * @param persistent True to mark an entry as persistent (not to be garbage collected).
+	 * @param sort The sort object
+	 * @return The store entry
 	 */
 	StoreEntry nextEntry(BigInteger key, long lifetime, boolean persistent, Object sort) throws IOException;
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
-	 * @throws IOException
+	 * Tests whether a store entry exists
+	 * 
+	 * @param key The key of a single store
+	 * @param id The key of a entry
+	 * @return True if the store entry exists, false otherwise.
 	 */
 	boolean existStoreEntry(BigInteger key, BigInteger id) throws IOException;
 
 	/**
-	 * @param key
-	 * @param oldId
-	 * @param newId
+	 * Reorganizes a store entry.
+	 * 
+	 * @param key The key of the store.
+	 * @param oldId The current id of the entry
+	 * @param newId The new id of the entry
 	 * @throws IOException
 	 */
 	void reorganizeStoreEntry(BigInteger key, BigInteger oldId, BigInteger newId) throws IOException;
 	
 	/**
-	 * @param key
-	 * @param id
+	 * Cleanup (removes) a store entry and all it's content.
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the entry
 	 * @throws IOException
 	 */
 	void cleanupStoreEntry(BigInteger key, BigInteger id) throws IOException;
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
+	 * Gets the store entry and returns an InputStream to read the content
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the object
+	 * @return The input stream
 	 * @throws IOException
 	 */
 	InputStream read(BigInteger key, BigInteger id) throws IOException;
 	
 	/**
-	 * @param key
-	 * @param id
-	 * @return
+	 * Gets the store entry and return the content as a String.
+	 * 
+	 * @param key The key of the store
+	 * @param id The id of the object
+	 * @return The content as a String
 	 * @throws IOException
 	 */
 	String readString(BigInteger key, BigInteger id) throws IOException;
 	
 	/**
-	 * @param entry
-	 * @return
+	 * Creates a new file using a StoreEntry created outside the store
+	 * It is recommended to use the nextEntry mechanism to create a
+	 * store entry.
+	 * 
+	 * @param entry The store entry
+	 * @return The file
 	 * @throws IOException
 	 */
 	File getFile(StoreEntry entry) throws IOException;
 	
 	/**
-	 * @param entry
-	 * @return
+	 * Gets an OutputStream to write to a store entry.
+	 * 
+	 * @param entry The store entry
+	 * @return The output stream
 	 * @throws IOException
 	 */
 	OutputStream write(StoreEntry entry) throws IOException;
 	
 	/**
-	 * @param data
-	 * @param entry
+	 * Write string data to a store.
+	 * 
+	 * @param data The data to write
+	 * @param entry The store entry
 	 * @throws IOException
 	 */
 	void writeString(String data, StoreEntry entry) throws IOException;

@@ -30,9 +30,9 @@ public interface IStoreExport {
 	/**
 	 * Adds a suffix to each store file that is not intern.
 	 * 
-	 * @param key
-	 * @param intern
-	 * @param suffix
+	 * @param key The key of the store
+	 * @param intern The files (id's of store entries) that should be kept intern
+	 * @param suffix The suffix to add to the filename
 	 * @throws IOException 
 	 */
 	void export(BigInteger key, BigInteger[] intern, String suffix) throws IOException;
@@ -40,8 +40,8 @@ public interface IStoreExport {
 	/**
 	 * Return the exported files
 	 * 
-	 * @param key
-	 * @return
+	 * @param key The store
+	 * @return The list of files
 	 * @throws IOException 
 	 */
 	File[] getExported(BigInteger key) throws IOException;

@@ -37,7 +37,7 @@ public interface IControlStore {
 	
 	/**
 	 * Get a list of all available store keys
-	 * @return
+	 * @return The list of keys
 	 */
 	List<BigInteger> getStoreKeys();
 	

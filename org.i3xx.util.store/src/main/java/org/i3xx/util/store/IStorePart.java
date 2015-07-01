@@ -29,34 +29,42 @@ import java.util.Map;
 public interface IStorePart {
 	
 	/**
-	 * @param key
-	 * @return
+	 * Creates a new store
+	 * 
+	 * @return The key id of the new store
 	 * @throws IOException
 	 */
 	BigInteger createStore(BigInteger key) throws IOException;
 
 	/**
-	 * @param key
-	 * @return
+	 * Tests whether a store exists
+	 * 
+	 * @param key The key of a single store
+	 * @return True if the store exists, false otherwise.
 	 */
 	boolean existStore(BigInteger key);
 	
 	/**
-	 * @param key
-	 * @return
+	 * Returns a map containing all entries of the store. The sort object as a key
+	 * and the id of the entry as a value.
+	 * 
+	 * @param key The key of the store
+	 * @return The map
 	 * @throws IOException
 	 */
 	Map<Object, BigInteger> getSortMap(BigInteger key) throws IOException;
 	
 	/**
-	 * @param key
-	 * @return
+	 * @param key The key of the store.
+	 * @return The list of id's
 	 * @throws IOException
 	 */
 	List<BigInteger> getStoreListing(BigInteger key) throws IOException;
 	
 	/**
-	 * @param key
+	 * Reorganizes a store.
+	 * 
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	void reorganizeStore(BigInteger key) throws IOException;
@@ -69,13 +77,17 @@ public interface IStorePart {
 	void reorganizeStore(BigInteger key, Map<Object, BigInteger> order) throws IOException;
 	
 	/**
-	 * @param key
+	 * Verifies the store and remove outdated or lost files.
+	 * 
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	void verifyStore(BigInteger key) throws IOException;
 	
 	/**
-	 * @param key
+	 * Cleanup a store
+	 * 
+	 * @param key The key of the store.
 	 * @throws IOException
 	 */
 	void cleanupStore(BigInteger key) throws IOException;

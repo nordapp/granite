@@ -66,12 +66,12 @@ public class StoreEntry implements Serializable {
 	}
 	
 	/**
-	 * @param trans
-	 * @param id
-	 * @param lifetime
-	 * @param persistent
-	 * @param sort
-	 * @return
+	 * @param trans The store key
+	 * @param id The id of the store entry
+	 * @param lifetime The time to live
+	 * @param persistent The persistence flag
+	 * @param sort The sort parameter
+	 * @return The store entry
 	 */
 	public static StoreEntry of(BigInteger trans, BigInteger id, long lifetime, boolean persistent, Object sort) {
 		
@@ -169,24 +169,25 @@ public class StoreEntry implements Serializable {
 	}
 	
 	/**
-	 * 
+	 * @param entry The store entry
+	 * @return The String representation of the URI
 	 */
 	public static final String getURI(StoreEntry entry) {
 		return "store://"+entry.trans+"/"+entry.id;
 	}
 	
 	/**
-	 * @param trans
-	 * @param id
-	 * @return
+	 * @param trans The store key
+	 * @param id The id of the store entry
+	 * @return The String representation of the URI
 	 */
 	public static final String getURI(BigInteger trans, BigInteger id) {
 		return "store://"+String.valueOf(trans)+"/"+String.valueOf(id);
 	}
 	
 	/**
-	 * @param uri
-	 * @return
+	 * @param uri The URI to parse the StoreEntry from.
+	 * @return The store entry
 	 * @throws MalformedURLException 
 	 */
 	public static final StoreEntry parseURI(String uri) throws MalformedURLException {

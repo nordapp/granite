@@ -32,6 +32,7 @@ public interface IStoreData {
 	
 	/**
 	 * Creates a new store entry
+	 * 
      * @param key The id of the transaction (or session)
      * @param id The id of the brick (or a similar number)
      * @param lifetime Time to live in millis from now
@@ -43,6 +44,7 @@ public interface IStoreData {
 	
     /**
      * Creates a new entry with the next id
+     * 
      * @param key The id of the transaction (or session)
      * @param lifetime Time to live in millis from now
      * @param persistent If false the element will be destroyed after the first read or during the next cleanup
@@ -58,57 +60,58 @@ public interface IStoreData {
 	
 	/**
 	 * Reads a resource from the store and returns an InputStream
-	 * @param key
-	 * @param id
-	 * @return
+	 * 
+	 * @param key The id of the transaction (or session)
+	 * @param id The id of the entry
+	 * @return The input stream to read from
 	 * @throws IOException
 	 */
 	InputStream read(BigInteger key, BigInteger id) throws IOException;
 	
 	/**
 	 * Reads a resource from the store into a string
-	 * @param key
-	 * @param id
-	 * @return
+	 * @param key The id of the transaction (or session)
+	 * @param id The id of the entry
+	 * @return The string
 	 * @throws IOException
 	 */
 	String readString(BigInteger key, BigInteger id) throws IOException;
 	
 	/**
 	 * Exports the resource of the store to an extern file
-	 * @param fileURL
-	 * @param key
-	 * @param id
+	 * @param fileURL The file url to export to
+	 * @param key The id of the transaction (or session)
+	 * @param id The id of the entry
 	 * @throws Exception
 	 */
 	void exportFile(String fileURL, String key, String id) throws IOException, URISyntaxException;
 	
 	/**
 	 * Gets the file of the resource of the store
-	 * @return
+	 * @return The file
 	 * @throws IOException
 	 */
 	File getFile() throws IOException;
 	
 	/**
 	 * Writes the content of the stream to the resource of the store
-	 * @param entry
-	 * @return
+	 * 
+	 * @return The OutputStream
 	 * @throws IOException
 	 */
 	OutputStream write() throws IOException;
 	
 	/**
 	 * Writes the content of the string to the resource of the store
-	 * @param data
-	 * @param entry
+	 * 
+	 * @param data The data to write
 	 * @throws IOException
 	 */
 	void writeString(String data) throws IOException;
 	
 	/**
 	 * Imports an external file as resource into the store
-	 * @param fileURL
+	 * @param fileURL The file URL of the file to import
 	 * @throws Exception
 	 */
 	void importFile(String fileURL) throws IOException, URISyntaxException;
