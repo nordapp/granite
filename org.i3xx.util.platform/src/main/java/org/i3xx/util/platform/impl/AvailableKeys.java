@@ -28,7 +28,7 @@ public class AvailableKeys {
 	/**
 	 * Return the implemented keys
 	 * 
-	 * @return
+	 * @return The array with the keys
 	 */
 	public static final String[] getKeys() {
 		return new String[]{

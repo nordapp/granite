@@ -32,7 +32,7 @@ public class PlatformImpl {
 	/**
 	 * Gets the current installed platform service
 	 * 
-	 * @return
+	 * @return The platform object of the current platform
 	 */
 	public static final Platform getPlatformService(BundleContext context) {
 		ServiceReference<Platform> psrv = context.getServiceReference(Platform.class);
