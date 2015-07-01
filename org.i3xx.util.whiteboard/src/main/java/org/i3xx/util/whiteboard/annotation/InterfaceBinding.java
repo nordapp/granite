@@ -147,7 +147,7 @@ public abstract class InterfaceBinding {
 	 * 
 	 * @param name The name of the method to be called
 	 * @param args The arguments
-	 * @return
+	 * @return The result of dispatching the method.
 	 * @throws InterfaceException
 	 */
 	@SuppressWarnings("unchecked")
