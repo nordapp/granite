@@ -26,7 +26,7 @@ public interface Platform {
 	/**
 	 * Get an array with available keys to platform dependent resources.
 	 * 
-	 * @return
+	 * @return The String array containing the keys.
 	 */
 	String[] keys();
 	
@@ -34,7 +34,7 @@ public interface Platform {
 	 * Get the platform dependent resource by key.
 	 * 
 	 * @param key
-	 * @return
+	 * @return The resource bound to the key.
 	 */
 	Object getObject(String key);
 }

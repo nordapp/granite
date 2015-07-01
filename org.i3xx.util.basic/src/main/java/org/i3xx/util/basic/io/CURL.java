@@ -44,12 +44,14 @@ public class CURL {
 	}
 	
 	/**
-	 * @param urlString
-	 * @return
-	 * @throws URISyntaxException
+	 * Gets the absolute filename from an URL
+	 * 
+	 * @param urlString The URL as string
+	 * @return The absolute path of the file object get from the URL
+	 * @throws URISyntaxException If the URL has an illegal format
 	 * 
 	 * Thanks to Christian Fries, Simone Giannis
-	 * @see http://stackoverflow.com/questions/18520972/converting-java-file-url-to-file-path-platform-independent-including-u
+	 * Taken from http://stackoverflow.com/questions/18520972/converting-java-file-url-to-file-path-platform-independent-including-u
 	 */
 	public static String fileURLtoFilename(String urlString) throws URISyntaxException {
 		if(urlString == null)
@@ -75,12 +77,14 @@ public class CURL {
 	}
 
 	/**
-	 * @param urlString
-	 * @return
-	 * @throws URISyntaxException
+	 * Gets the file from an URL
+	 * 
+	 * @param urlString The URL as string
+	 * @return The file object get from the URL
+	 * @throws URISyntaxException If the URL has an illegal format
 	 * 
 	 * Thanks to Christian Fries, Simone Giannis
-	 * @see http://stackoverflow.com/questions/18520972/converting-java-file-url-to-file-path-platform-independent-including-u
+	 * Taken from http://stackoverflow.com/questions/18520972/converting-java-file-url-to-file-path-platform-independent-including-u
 	 */
 	public static File fileURLtoFile(String urlString) throws URISyntaxException {
 		if(urlString == null)
@@ -106,18 +110,22 @@ public class CURL {
 	}
 	
 	/**
-	 * @param filename
-	 * @return
-	 * @throws URISyntaxException
+	 * Gets the String representation of an URL from a filename.
+	 * 
+	 * @param filename The filename
+	 * @return The URL as String
+	 * @throws URISyntaxException Is never thrown
 	 */
 	public static String fileURLfromFilename(String filename) throws URISyntaxException {
 		return fileURLfromFile( new File(filename) );
 	}
 	
 	/**
-	 * @param file
-	 * @return
-	 * @throws URISyntaxException
+	 * Gets an URL representation from a file object.
+	 * 
+	 * @param file The file to get it's URL representation
+	 * @return The URL as String
+	 * @throws URISyntaxException Is never thrown
 	 */
 	public static String fileURLfromFile(File file) throws URISyntaxException {
 		

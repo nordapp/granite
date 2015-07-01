@@ -51,7 +51,7 @@ public class FilePath {
 	 * Gets a path object with the path appended.
 	 * 
 	 * @param path The path to append
-	 * @return
+	 * @return The FilePath of the path
 	 */
 	public FilePath add(String path) {
 		StringBuffer buf = new StringBuffer(this.path);
@@ -69,8 +69,8 @@ public class FilePath {
 	 * with the given path, the given path is removed from the new path.
 	 * If the current path doesn't end with path, this is returned. 
 	 * 
-	 * @param path The tail to cut off.
-	 * @return
+	 * @param tail The tail to cut off.
+	 * @return  The file path of the path
 	 */
 	public FilePath nibble(String tail) {
 		
@@ -110,7 +110,7 @@ public class FilePath {
 	 * Gets a path object of the path, replaces OS dependent path separator by '/'
 	 * 
 	 * @param path The path
-	 * @return
+	 * @return The FilePath of the path
 	 */
 	public static FilePath get(String path) {
 		FilePath p = new FilePath(path.replace(File.separatorChar, '/'));
@@ -122,7 +122,7 @@ public class FilePath {
 	 * Gets a path object of the path, replaces OS dependent path separator by '/'
 	 * 
 	 * @param path The path
-	 * @return
+	 * @return The FilePath of the path
 	 */
 	public static FilePath append(String... path) {
 		FilePath p = get(path[0]);
@@ -136,7 +136,7 @@ public class FilePath {
 	 * Normalizes the path, this is to cut a trailing '/'
 	 * 
 	 * @param path The path
-	 * @return
+	 * @return The normalized path
 	 */
 	private static String normalize(String path) {
 		if(path.endsWith(sep))

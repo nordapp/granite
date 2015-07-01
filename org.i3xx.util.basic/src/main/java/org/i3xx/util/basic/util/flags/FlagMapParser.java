@@ -84,10 +84,10 @@ import java.util.List;
  * 
  * <p>Example:</p>
  * 
- * <p><b>8+=0x4,8-=0x20</b><br/><br/>
+ * <p><b>8+=0x4,8-=0x20</b><br><br>
  * At the position 8 set the flag 0100 and remove the flag 00100000.</p>
  * 
- * <p><b>10+=0b01001,12|=0x37</b><br/><br/>
+ * <p><b>10+=0b01001,12|=0x37</b><br><br>
  * The position at 10 the flags 01001 will be added and at the position
  * 12, the flags 00110111 will be set.</p>
  * 
@@ -138,7 +138,7 @@ public class FlagMapParser {
 	}
 	
 	/**
-	 * @return
+	 * @return The index of the next command.
 	 */
 	private int getNextPart() {
 		
@@ -153,14 +153,14 @@ public class FlagMapParser {
 	}
 
 	/**
-	 * @return the list
+	 * @return the elements list
 	 */
 	public List<FlagMapElement> getList() {
 		return list;
 	}
 	
 	/**
-	 * @return
+	 * @return The array representation of the elements list.
 	 */
 	public FlagMapElement[] toArray() {
 		return list.toArray(new FlagMapElement[list.size()]);
