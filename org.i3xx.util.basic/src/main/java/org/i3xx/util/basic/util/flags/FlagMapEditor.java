@@ -31,10 +31,10 @@ public class FlagMapEditor {
 	 * Description of the operator:
 	 * 
 	 * := sets the value
-	 * &= does a logical AND (101 & 110 = 100)
+	 * &amp;= does a logical AND (101 &amp; 110 = 100)
 	 * |= does a logical OR  (101 | 110 = 111)
 	 * += Add all flags, does a logical OR or sets the value if it is not available.
-	 * -= Remove all flags, does a logical AND with the complement (101 & ~110 = 001, ~110 = 001)
+	 * -= Remove all flags, does a logical AND with the complement (101 &amp; ~110 = 001, ~110 = 001)
 	 * 
 	 * @param flags The map of flags
 	 * @param stmt The statement to edit the flags

@@ -46,8 +46,8 @@ import java.util.List;
  * <li>-= Remove all flags, does a logical AND with the complement (101 & ~110 = 001, ~110 = 001)</li>
  * </ul>
  * 
- * <p>The key represents the index of the flag in the map.<br/>
- * The operator is the command what to do with the map.<br/>
+ * <p>The key represents the index of the flag in the map.<br>
+ * The operator is the command what to do with the map.<br>
  * The value represent the flags to set/remove/edit.</p>
  * 
  * <p>The values of the flags to set (+=) and remove (-=) have up to 64 bit.</p>
@@ -109,7 +109,7 @@ public class FlagMapParser {
 	/**
 	 * The flag map parser parses the statement
 	 * The key is a long int with the radix 10 and the value is a long int with the radix 16.
-	 * Valid operators are ':=' '+=' '-=' '&=' '|='
+	 * Valid operators are ':=' '+=' '-=' '&amp;=' '|='
 	 * 
 	 * key ::=   index of the flag in the map
 	 * value ::= value of the flag
