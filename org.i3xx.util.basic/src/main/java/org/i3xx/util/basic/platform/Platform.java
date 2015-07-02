@@ -33,7 +33,7 @@ public interface Platform {
 	/**
 	 * Get the platform dependent resource by key.
 	 * 
-	 * @param key
+	 * @param key The key of the value to get.
 	 * @return The resource bound to the key.
 	 */
 	Object getObject(String key);
