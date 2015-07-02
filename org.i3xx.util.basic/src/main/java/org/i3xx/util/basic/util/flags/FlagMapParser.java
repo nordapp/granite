@@ -40,7 +40,7 @@ import java.util.List;
  * 
  * <ul>
  * <li>:= sets the value</li>
- * <li>&amp;= does a logical AND (101 & 110 = 100)</li>
+ * <li>&amp;= does a logical AND (101 &amp; 110 = 100)</li>
  * <li>|= does a logical OR  (101 | 110 = 111)</li>
  * <li>+= Add all flags, does a logical OR or sets the value if it is not available.</li>
  * <li>-= Remove all flags, does a logical AND with the complement (101 &amp; ~110 = 001, ~110 = 001)</li>
