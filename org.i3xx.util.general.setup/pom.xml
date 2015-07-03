@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.general.setup</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <url>http://maven.apache.org</url>
   <name>NordApp OfficeBase :: util :: g-setup</name>
@@ -15,13 +15,13 @@
   
   <scm>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>${project.groupId}-${project.artifactId}</tag>
+    <tag>org.i3xx.util-0.1.0</tag>
   </scm>
     
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.2.6</version>
+    <version>0.2.7</version>
   </parent>
   
   <dependencies>
