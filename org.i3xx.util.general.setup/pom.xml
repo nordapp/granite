@@ -13,10 +13,15 @@
   	<project.inceptionYear>2014</project.inceptionYear>
   </properties>
   
+  <scm>
+  	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
+    <tag>${project.groupId}-${project.artifactId}</tag>
+  </scm>
+    
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.6</version>
   </parent>
   
   <dependencies>
