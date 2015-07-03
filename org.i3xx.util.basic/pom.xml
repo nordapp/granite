@@ -23,7 +23,7 @@
   	<!-- <url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>-->
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>org.i3xx.util.basic-0.1.0</tag>
+    <tag>${project.groupId}-${project.artifactId}</tag>
   </scm>
   
   <dependencies>
