@@ -13,10 +13,15 @@
   	<test.workspace.version>0.1.4-SNAPSHOT</test.workspace.version>
   </properties>
   
+  <scm>
+  	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
+  	<tag>org.i3xx.util-0.0.0</tag>
+  </scm>
+  
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.7</version>
   </parent>
     
   <build>
@@ -87,5 +92,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
 </project>
