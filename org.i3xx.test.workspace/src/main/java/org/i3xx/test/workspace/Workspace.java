@@ -114,8 +114,8 @@ public class Workspace {
 	 * Remove the tail from the statement
 	 * 
 	 * @param stmt The statement
-	 * @param skip The tail to remove
-	 * @return
+	 * @param tail The tail to remove
+	 * @return The statement without the tail
 	 */
 	public static String nibble(String stmt, String tail) {
 		if( stmt.indexOf(tail)<0)
