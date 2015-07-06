@@ -3,7 +3,7 @@
   <groupId>org.i3xx.eclipse.test</groupId>
   <artifactId>workspace</artifactId>
   <packaging>jar</packaging>
-  <version>0.1.5-SNAPSHOT</version>
+  <version>0.1.5</version>
   <name>workspace location</name>
   <url>http://maven.apache.org</url>
   
@@ -14,7 +14,7 @@
   
   <scm>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>org.i3xx.util-0.0.0</tag>
+    <tag>org.i3xx.test.workspace-0.1.5</tag>
   </scm>
   
   <parent>
