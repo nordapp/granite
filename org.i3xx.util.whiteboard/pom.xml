@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.whiteboard</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
   <url>http://maven.apache.org</url>
   <name>NordApp OfficeBase :: Whiteboard</name>
   <packaging>bundle</packaging>
@@ -29,7 +29,7 @@
   
   <scm>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-  	<tag>org.i3xx.util-0.0.0</tag>
+  	<tag>org.i3xx.util.whiteboard-0.1.0</tag>
   </scm>
   
   <build>
@@ -42,7 +42,7 @@
 			<configuration>
 				<instructions>
 				
-					<Bundle-Activator></Bundle-Activator>
+					<Bundle-Activator />
 					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 					<Bundle-Name>${project.name}</Bundle-Name>
 					<Bundle-Version>${project.version}</Bundle-Version>
@@ -54,7 +54,7 @@
 						org.osgi.framework,
 						org.slf4j,
 					</Import-Package>
-					<Private-Package></Private-Package>
+					<Private-Package />
 					<!--<Export-Service></Export-Service>-->
 				</instructions>
 			</configuration>
