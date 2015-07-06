@@ -10,7 +10,6 @@
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<test.workspace.version>0.1.4-SNAPSHOT</test.workspace.version>
   </properties>
   
   <scm>
