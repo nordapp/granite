@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.symbol</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
   <packaging>bundle</packaging>
   <url>http://maven.apache.org</url>
   <name>NordApp OfficeBase :: util :: symbol</name>
@@ -15,7 +15,7 @@
   
   <scm>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-  	<tag>org.i3xx.util-0.0.0</tag>
+  	<tag>org.i3xx.util.symbol-0.1.0</tag>
   </scm>
   
   <parent>
@@ -90,7 +90,7 @@
 					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 					<Bundle-Name>${project.name}</Bundle-Name>
 					<Bundle-Version>${project.version}</Bundle-Version>
-					<Bundle-Activator></Bundle-Activator>
+					<Bundle-Activator />
 					
 					<Export-Package>
 						org.i3xx.util.symbol.service.impl,
@@ -109,7 +109,7 @@
 						org.osgi.framework,
 						org.slf4j
 					</Import-Package>
-					<Private-Package></Private-Package>
+					<Private-Package />
 					<!--<Export-Service></Export-Service>-->
 				</instructions>
 			</configuration>
@@ -118,7 +118,7 @@
 	
 	<resources>
   		<resource>
-  			<directory></directory>
+  			<directory />
   			<includes>
   				<include>OSGI-INF/**/*.*</include>
   			</includes>
