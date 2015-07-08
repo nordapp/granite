@@ -21,9 +21,11 @@
   	<test.workspace.version>[0.1.4,0.2)</test.workspace.version>
   	<util.general.setup.version>[0.1.0,0.2)</util.general.setup.version>
   	<util.platform.version>[0.1.0,0.2)</util.platform.version>
-  	<util.store.version>[1.0.4,1.1)</util.store.version>
+  	<util.store.version>[0.1.0,0.2)</util.store.version>
   	<util.symbol.version>[0.1.0,0.2)</util.symbol.version>
   	<util.whiteboard.version>[0.1.0,0.2)</util.whiteboard.version>
+  	<!-- Fix to pass a property to subprocess test:test in release:prepare -->
+  	<release.arguments></release.arguments>
   </properties>
   
   <licenses>
@@ -81,6 +83,8 @@
 			  <checkModificationExcludes>
 				 <checkModificationExclude>License.txt</checkModificationExclude>
 			  </checkModificationExcludes>
+  		      <!-- Fix to pass a property to subprocess test:test in release:prepare -->
+  		      <arguments>${release.arguments}</arguments>
 		   </configuration>
     	</plugin>
 		
