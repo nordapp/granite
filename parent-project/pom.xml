@@ -4,7 +4,7 @@
   <!-- <groupId>org.i3xx.project</groupId> -->
   <groupId>org.i3xx.parent</groupId>
   <artifactId>parent-project</artifactId>
-  <version>0.2.8-SNAPSHOT</version>
+  <version>0.2.8</version>
   <packaging>pom</packaging>
 
   <name>parent-project</name>
@@ -25,7 +25,7 @@
   	<util.symbol.version>[0.1.0,0.2)</util.symbol.version>
   	<util.whiteboard.version>[0.1.0,0.2)</util.whiteboard.version>
   	<!-- Fix to pass a property to subprocess test:test in release:prepare -->
-  	<release.arguments></release.arguments>
+  	<release.arguments />
   </properties>
   
   <licenses>
@@ -38,7 +38,7 @@
   </licenses>
   
   <scm>
-    <tag>parent-project-0.2.7</tag>
+    <tag>parent-project-0.2.8</tag>
   	<url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
