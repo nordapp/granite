@@ -24,6 +24,7 @@
   	<util.store.version>[0.1.0,0.2)</util.store.version>
   	<util.symbol.version>[0.1.0,0.2)</util.symbol.version>
   	<util.whiteboard.version>[0.1.0,0.2)</util.whiteboard.version>
+  	<osgi.core.version>[4.3.1</osgi.core.version>
   	<!-- Fix to pass a property to subprocess test:test in release:prepare -->
   	<release.arguments />
   </properties>
