@@ -4,7 +4,7 @@
   <!-- <groupId>org.i3xx.project</groupId> -->
   <groupId>org.i3xx.parent</groupId>
   <artifactId>parent-project</artifactId>
-  <version>0.2.9-SNAPSHOT</version>
+  <version>0.2.9</version>
   <packaging>pom</packaging>
 
   <name>parent-project</name>
@@ -39,7 +39,7 @@
   </licenses>
   
   <scm>
-    <tag>parent-project-0.2.7</tag>
+    <tag>parent-project-0.2.9</tag>
   	<url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
