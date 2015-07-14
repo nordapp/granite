@@ -63,7 +63,7 @@
 						org.i3xx.util.basic.platform;version="${util.basic.version}",
 						org.osgi.service.blueprint,
 						org.osgi.service.cm,
-						org.osgi.framework;version="${osgi.core.version}",
+						org.osgi.framework",
 						org.slf4j
 					</Import-Package>
 					<Private-Package />
