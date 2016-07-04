@@ -2,84 +2,216 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.basic</artifactId>
-  <version>0.1.3-SNAPSHOT</version>
-  <packaging>bundle</packaging>
-  <name>NordApp OfficeBase :: util :: basic</name>
+  <version>0.2.0-SNAPSHOT</version>
+  <name>NordApp :: util :: basic</name>
   <url>http://maven.apache.org</url>
-  <description>Basic tools and utilities - replace the util :: core bundle to avoid dependencies. This bundle should not have dependencies, but defines some core interfaces and techniques.</description>
+  <description>Basic tools and utilities - This project should not have dependencies, but defines some core interfaces and techniques. Removes all depenmdencies to OSGi</description>
   
   <properties>
-  	<project.inceptionYear>2015</project.inceptionYear>
+  	<project.inceptionYear>2016</project.inceptionYear>
   </properties>
   
   <!-- Basic utilities and tools -->
-  <parent>
-    <groupId>org.i3xx.parent</groupId>
-    <artifactId>parent-project</artifactId>
-    <version>0.2.10</version>
-  </parent>
   
   <scm>
   	<!-- <url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>-->
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>org.i3xx.util.basic-0.1.1</tag>
+    <tag>org.i3xx.util.basic-0.2.0</tag>
   </scm>
   
   <dependencies>
-	<dependency>
-    	<groupId>org.osgi</groupId>
-    	<artifactId>org.osgi.core</artifactId>
-	</dependency>
     
 	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-api</artifactId>
+		<version>1.7.5</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.7.5</version>
 	</dependency>
+  	
+    <dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+    </dependency>
   </dependencies>
     
   <build>
 	<plugins>
+		
 		<plugin>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>maven-bundle-plugin</artifactId>
-			<version>2.3.7</version>
-			<extensions>true</extensions>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.3</version>
 			<configuration>
-				<instructions>
-					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-					<Bundle-Name>${project.name}</Bundle-Name>
-					<Bundle-Version>${project.version}</Bundle-Version>
-					<Bundle-Activator>org.i3xx.util.basic.activator.DummyActivator</Bundle-Activator>
-					
-					<Export-Package>
-						org.i3xx.util.basic.activator,
-						org.i3xx.util.basic.core,
-						org.i3xx.util.basic.io,
-						org.i3xx.util.basic.platform,
-						org.i3xx.util.basic.util.flags,
-						org.i3xx.util.basic.util.text,
-					</Export-Package>
-					<Import-Package>
-						org.osgi.framework,
-						org.slf4j,
-						org.xml.sax
-					</Import-Package>
-					<Private-Package />
-				</instructions>
+				<target>1.6</target>
+				<source>1.6</source>
 			</configuration>
 		</plugin>
 		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.9</version>
+			<configuration>
+				<forkMode>once</forkMode>
+			</configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+		   <artifactId>maven-deploy-plugin</artifactId>
+		   <version>2.8.2</version>
+		   <configuration>
+		      <skip>true</skip>
+		   </configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+		   <artifactId>maven-release-plugin</artifactId>
+		   <version>2.5.1</version>
+		   <configuration>
+			  <checkModificationExcludes>
+				 <checkModificationExclude>License.txt</checkModificationExclude>
+			  </checkModificationExcludes>
+  		      <!-- Fix to pass a property to subprocess test:test in release:prepare -->
+  		      <arguments>${release.arguments}</arguments>
+		   </configuration>
+    	</plugin>
+		
+		<plugin>
+		   <groupId>org.sonatype.plugins</groupId>
+		   <artifactId>nexus-staging-maven-plugin</artifactId>
+		   <version>1.6.3</version>
+		   <extensions>true</extensions>
+		   <configuration>
+		   	 <serverId>ossrh</serverId>
+		   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		   </configuration>
+		</plugin>
+		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>2.3</version>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+					<configuration>
+						<transformers>
+							<transformer
+								implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<manifestEntries>
+									<Main-Class>org.i3xx.util.basic</Main-Class>
+									<!--<Main-Verticle>org.i3xx.util.basic.Main</Main-Verticle>-->
+								</manifestEntries>
+							</transformer>
+						</transformers>
+						<artifactSet/>
+						<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+
 	</plugins>
 
   </build>
   
+  <distributionManagement>
+	<snapshotRepository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	</snapshotRepository>
+    <repository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+	</repository>
+	
+  </distributionManagement>
+  
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      
+      <build>
+        <plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<configuration>
+					<organizationName>${project.organizationName}</organizationName>
+					<inceptionYear>${project.inceptionYear}</inceptionYear>
+					<projectName>${project.name}</projectName>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+				<executions>
+					<execution>
+						<id>update-project-license</id>
+						<goals>
+							<goal>update-project-license</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>update-file-header</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test/java</root>
+							</roots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download-licenses</id>
+						<goals>
+							<goal>download-licenses</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-gpg-plugin</artifactId>
+			  <executions>
+			    <execution>
+			      <id>sign-artifacts</id>
+			      <phase>verify</phase>
+			      <goals>
+			        <goal>sign</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
+			
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
