@@ -1,0 +1,312 @@
+package org.i3xx.util.qtuple.impl;
+
+import org.i3xx.util.qtuple.impl.Tuple.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * TODO Use regexp
+ * 
+ * @author Stefan
+ *
+ */
+public final class Parser {
+	
+	private static Logger logger = LoggerFactory.getLogger(Parser.class);
+	
+	private final Tuple root;
+	
+	/**
+	 * symbol ::= A valid Java string, may be quoted by '"' (escape char '\')
+	 * a ::= symbol
+	 * b ::= symbol
+	 * op ::= operator: and '&', or '|', not '!'
+	 * tuple ::= '(' a ',' b ')'
+	 * statement ::= '(' op tuple ')'
+	 * 
+	 * @param stmt
+	 */
+	public Parser(String stmt) {
+		root = parses(stmt, Type.ROOT);
+	}
+	
+	/**
+	 * @return
+	 */
+	Tuple getRoot() {
+		return root;
+	}
+	
+	/**
+	 * @param stmt The statement to parse
+	 * @param type The type of the tuple (start with Type.ROOT)
+	 * @return
+	 */
+	public Tuple parses(String stmt, Type type) {
+		logger.trace("parses: {}", stmt);
+		
+		String s = null;
+		
+		if( isBracket(stmt) ){
+			s = readBracket(stmt);
+			return parses(s, type);
+		}else if( isQuote(stmt) ){
+			s = readQuote(stmt);
+			return new Monade(s, Type.VALUE);
+		}else if( hasComma(stmt) ){
+			//is tuple
+			s = readBeforeComma(stmt);
+			Tuple k = parses(s, type);
+			s = stmt.substring(s.length()+1);
+			Tuple v = parses(s, type);
+			return new Tuple(k, v, type);
+		}else if( isOperator(stmt) ){
+			s = readOperator(stmt);
+			Type t = s.equals("&") ? Type.AND : 
+				s.equals("|") ? Type.OR : 
+					s.equals("!") ? Type.NOT :
+						null;
+			if(t==null)
+				throw new IllegalArgumentException("The operator '"+s+"' of the statement '"+
+						stmt+"' is not valid (usage: &, |, !).;");
+			
+			s = stmt.substring(s.length());
+			return parses(s, t);
+		}else if( hasSeparator(stmt) ){
+			//is tuple
+			s = readBeforeSeparator(stmt);
+			Tuple k = parses(s, Type.KEY);
+			s = stmt.substring(s.length()+1);
+			Tuple v = parses(s, Type.VALUE);
+			return new Tuple(k, v, type);
+		}else if( hasBracket(stmt) ){
+			s = readBeforeBracket(stmt);
+			
+			throw new IllegalArgumentException("The operator '"+s+"' of the statement '"+
+					stmt+"' is not valid (usage: &, |, !).");
+		}else{
+			s = stmt.trim();
+			
+			return new Monade(s, type);
+		}
+	}
+	
+	/**
+	 * Reads the next quoted String or null if the String is not quoted.
+	 * 
+	 * @return The quoted String without the quotes
+	 */
+	public String readQuote(String stmt) {
+		String s = stmt.trim();
+		if(s.startsWith("\"")){
+			for(int i=1;i<s.length();i++) {
+				char c = s.charAt(i);
+				if(c=='"' && s.charAt(i-1)!='\\') {
+					return s.substring(1, i-1);
+				}//fi
+			}//for
+		}//fi
+		
+		return null;
+	}
+	
+	/**
+	 * Reads the next bracket or null if the String is not a bracket.
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public String readBracket(String stmt) {
+		String s = stmt.trim();
+		if(s.startsWith("(") && s.endsWith(")")){
+			return s.substring(1, s.length()-1).trim();
+		}//fi
+		return null;
+	}
+	
+	/**
+	 * Reads the String before the next bracket '('
+	 * @param stmt
+	 * 
+	 * @return
+	 */
+	public String readOperator(String stmt) {
+		String s = stmt.trim();
+		//if(s.length()!=1)
+		//	throw new IllegalArgumentException("The statement '"+s+"' is not an operator (usage: &, |, !).");
+		
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)=='('){
+				return s.substring(0, i).trim();
+			}//fi
+		}//for
+		
+		return null;
+	}
+	
+	/**
+	 * Reads the String before the next bracket '('
+	 * @param stmt
+	 * 
+	 * @return
+	 */
+	public String readBeforeBracket(String stmt) {
+		String s = stmt.trim();
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)=='('){
+				return s.substring(0, i).trim();
+			}//fi
+		}//for
+		
+		return null;
+	}
+	
+	/**
+	 * Reads the String before the next comma ','
+	 * @param stmt
+	 * 
+	 * @return
+	 */
+	public String readBeforeComma(String stmt) {
+		String s = stmt.trim();
+		int p = scanComma(s);
+		
+		return p<0 ? null : s.substring(0, p).trim();
+	}
+	
+	/**
+	 * Reads the String before the next separator '='
+	 * @param stmt
+	 * 
+	 * @return
+	 */
+	public String readBeforeSeparator(String stmt) {
+		String s = stmt.trim();
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)=='='){
+				return s.substring(0, i).trim();
+			}//fi
+		}//for
+		
+		return null;
+	}
+	
+	/**
+	 * Returns true if the next String is quoted
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean isQuote(String stmt) {
+		String s = stmt;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)==' '){
+				//does nothing
+			}else if(s.charAt(i)=='"'){
+				return true;
+			}else{
+				return false;
+			}//fi
+		}//for
+		
+		return false;
+	}
+	
+	/**
+	 * Returns true if the statement starts with a bracket
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean isBracket(String stmt) {
+		String s = stmt;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)==' '){
+				//does nothing
+			}else if(s.charAt(i)=='('){
+				return true;
+			}else{
+				return false;
+			}//fi
+		}//for
+		
+		return false;
+	}
+	
+	/**
+	 * Returns true if the statement starts with an operator
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean isOperator(String stmt) {
+		String s = stmt;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)==' '){
+				//does nothing
+			}else if(s.charAt(i)=='&'){
+				return true;
+			}else if(s.charAt(i)=='|'){
+				return true;
+			}else if(s.charAt(i)=='!'){
+				return true;
+			}else{
+				return false;
+			}//fi
+		}//for
+		
+		return false;
+	}
+	
+	/**
+	 * Returns true if the statement contains a separator char
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean hasSeparator(String stmt) {
+		return stmt.contains("=");
+	}
+	
+	/**
+	 * Returns true if the statement contains a separator char
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean hasComma(String stmt) {
+		String s = stmt.trim();
+		return scanComma(s)>-1;
+	}
+	
+	/**
+	 * @param s
+	 * @return
+	 */
+	public int scanComma(String s) {
+		int b = 0;
+		boolean c = false;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)=='(')
+				b++;
+			if(s.charAt(i)==')')
+				b--;
+			if(s.charAt(i)=='"')
+				c = !c;
+			if(s.charAt(i)==',' && b==0 && !c)
+				return i;
+		}
+		return -1;
+	}
+	
+	/**
+	 * Returns true if the statement contains an open bracket char
+	 * 
+	 * @param stmt
+	 * @return
+	 */
+	public boolean hasBracket(String stmt) {
+		return stmt.contains("(");
+	}
+	
+}
