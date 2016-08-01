@@ -3,7 +3,7 @@ package org.i3xx.util.qtuple.impl;
 public class Tuple {
 	
 	/** The type of the tuple */
-	public enum Type {KEY, VALUE, ROOT, AND, OR, NOT}
+	public enum Type {KEY, VALUE, ROOT, LEAF, AND, OR, NOT}
 	
 	/** The name of the tuple */
 	private final Tuple right;
@@ -25,6 +25,13 @@ public class Tuple {
 	 */
 	public Type getType() {
 		return type;
+	}
+	
+	/**
+	 * @return
+	 */
+	public int getFlags() {
+		return 0;
 	}
 
 	/**

@@ -39,20 +39,20 @@ public class ParserImpl {
 		Tuple t = p.getRoot();
 		
 		assertEquals( t.getType(), Type.AND );
-		assertEquals( t.getLeft().getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
 		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getLeft().getLeft().toString(), "key1" );
 		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getLeft().getRight().toString(), "hallo" );
 		
 		assertEquals( t.getRight().getType(), Type.AND );
-		assertEquals( t.getRight().getLeft().getType(), Type.AND );
+		assertEquals( t.getRight().getLeft().getType(), Type.LEAF );
 		assertEquals( t.getRight().getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getLeft().getLeft().toString(), "key2" );
 		assertEquals( t.getRight().getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getLeft().getRight().toString(), "welt" );
 		
-		assertEquals( t.getRight().getRight().getType(), Type.AND );
+		assertEquals( t.getRight().getRight().getType(), Type.LEAF );
 		assertEquals( t.getRight().getRight().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getRight().getLeft().toString(), "key3" );
 		assertEquals( t.getRight().getRight().getRight().getType(), Type.VALUE );
@@ -66,20 +66,20 @@ public class ParserImpl {
 		Tuple t = p.getRoot();
 		
 		assertEquals( t.getType(), Type.OR );
-		assertEquals( t.getLeft().getType(), Type.OR );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
 		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getLeft().getLeft().toString(), "key1" );
 		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getLeft().getRight().toString(), "hallo" );
 		
 		assertEquals( t.getRight().getType(), Type.OR );
-		assertEquals( t.getRight().getLeft().getType(), Type.OR );
+		assertEquals( t.getRight().getLeft().getType(), Type.LEAF );
 		assertEquals( t.getRight().getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getLeft().getLeft().toString(), "key2" );
 		assertEquals( t.getRight().getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getLeft().getRight().toString(), "welt" );
 		
-		assertEquals( t.getRight().getRight().getType(), Type.OR );
+		assertEquals( t.getRight().getRight().getType(), Type.LEAF );
 		assertEquals( t.getRight().getRight().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getRight().getLeft().toString(), "key3" );
 		assertEquals( t.getRight().getRight().getRight().getType(), Type.VALUE );
@@ -93,24 +93,25 @@ public class ParserImpl {
 		Tuple t = p.getRoot();
 		
 		assertEquals( t.getType(), Type.AND );
-		assertEquals( t.getLeft().getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
 		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getLeft().getLeft().toString(), "key1" );
 		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getLeft().getRight().toString(), "hallo" );
 		
 		assertEquals( t.getRight().getType(), Type.AND );
-		assertEquals( t.getRight().getLeft().getType(), Type.AND );
+		assertEquals( t.getRight().getLeft().getType(), Type.LEAF );
 		assertEquals( t.getRight().getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getLeft().getLeft().toString(), "key2" );
 		assertEquals( t.getRight().getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getLeft().getRight().toString(), "welt" );
 		
 		assertEquals( t.getRight().getRight().getType(), Type.NOT );
-		assertEquals( t.getRight().getRight().getLeft().getType(), Type.KEY );
-		assertEquals( t.getRight().getRight().getLeft().toString(), "key3" );
-		assertEquals( t.getRight().getRight().getRight().getType(), Type.VALUE );
-		assertEquals( t.getRight().getRight().getRight().toString(), "test" );
+		assertEquals( t.getRight().getRight().getLeft().getType(), Type.LEAF );
+		assertEquals( t.getRight().getRight().getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getRight().getRight().getLeft().getLeft().toString(), "key3" );
+		assertEquals( t.getRight().getRight().getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getRight().getRight().getLeft().getRight().toString(), "test" );
 	}
 
 	@Test
@@ -121,19 +122,20 @@ public class ParserImpl {
 		
 		assertEquals( t.getType(), Type.AND );
 		assertEquals( t.getLeft().getType(), Type.NOT );
-		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
-		assertEquals( t.getLeft().getLeft().toString(), "key1" );
-		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
-		assertEquals( t.getLeft().getRight().toString(), "hallo" );
+		assertEquals( t.getLeft().getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getLeft().getRight().toString(), "hallo" );
 		
 		assertEquals( t.getRight().getType(), Type.AND );
-		assertEquals( t.getRight().getLeft().getType(), Type.AND );
+		assertEquals( t.getRight().getLeft().getType(), Type.LEAF );
 		assertEquals( t.getRight().getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getLeft().getLeft().toString(), "key2" );
 		assertEquals( t.getRight().getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getLeft().getRight().toString(), "welt" );
 		
-		assertEquals( t.getRight().getRight().getType(), Type.AND );
+		assertEquals( t.getRight().getRight().getType(), Type.LEAF );
 		assertEquals( t.getRight().getRight().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getRight().getLeft().toString(), "key3" );
 		assertEquals( t.getRight().getRight().getRight().getType(), Type.VALUE );
@@ -148,23 +150,104 @@ public class ParserImpl {
 		
 		assertEquals( t.getType(), Type.OR );
 		assertEquals( t.getLeft().getType(), Type.NOT );
-		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
-		assertEquals( t.getLeft().getLeft().toString(), "key1" );
-		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
-		assertEquals( t.getLeft().getRight().toString(), "hallo" );
+		assertEquals( t.getLeft().getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getLeft().getRight().toString(), "hallo" );
 		
 		assertEquals( t.getRight().getType(), Type.AND );
-		assertEquals( t.getRight().getLeft().getType(), Type.AND );
+		assertEquals( t.getRight().getLeft().getType(), Type.LEAF );
 		assertEquals( t.getRight().getLeft().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getLeft().getLeft().toString(), "key2" );
 		assertEquals( t.getRight().getLeft().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getLeft().getRight().toString(), "welt" );
 		
-		assertEquals( t.getRight().getRight().getType(), Type.AND );
+		assertEquals( t.getRight().getRight().getType(), Type.LEAF );
 		assertEquals( t.getRight().getRight().getLeft().getType(), Type.KEY );
 		assertEquals( t.getRight().getRight().getLeft().toString(), "key3" );
 		assertEquals( t.getRight().getRight().getRight().getType(), Type.VALUE );
 		assertEquals( t.getRight().getRight().getRight().toString(), "test" );
+	}
+
+	@Test
+	public void testF() {
+		
+		Parser p = new Parser("&(key1=hallo,key2=welt)");
+		Tuple t = p.getRoot();
+		
+		assertEquals( t.getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getRight().toString(), "hallo" );
+		
+		assertEquals( t.getRight().getType(), Type.LEAF );
+		assertEquals( t.getRight().getLeft().getType(), Type.KEY );
+		assertEquals( t.getRight().getLeft().toString(), "key2" );
+		assertEquals( t.getRight().getRight().getType(), Type.VALUE );
+		assertEquals( t.getRight().getRight().toString(), "welt" );
+	}
+
+	@Test
+	public void testG() {
+		
+		Parser p = new Parser("&(key1=\"hallo\",key2=\"welt\")");
+		Tuple t = p.getRoot();
+		
+		assertEquals( t.getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getRight().toString(), "hallo" );
+		
+		assertEquals( t.getRight().getType(), Type.LEAF );
+		assertEquals( t.getRight().getLeft().getType(), Type.KEY );
+		assertEquals( t.getRight().getLeft().toString(), "key2" );
+		assertEquals( t.getRight().getRight().getType(), Type.VALUE );
+		assertEquals( t.getRight().getRight().toString(), "welt" );
+	}
+
+	@Test
+	public void testH() {
+		
+		Parser p = new Parser("&(key1=\"hal\\\"lo\",key2=\"\\\"welt\\\"\")");
+		Tuple t = p.getRoot();
+		
+		assertEquals( t.getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getRight().toString(), "hal\\\"lo" );
+		
+		assertEquals( t.getRight().getType(), Type.LEAF );
+		assertEquals( t.getRight().getLeft().getType(), Type.KEY );
+		assertEquals( t.getRight().getLeft().toString(), "key2" );
+		assertEquals( t.getRight().getRight().getType(), Type.VALUE );
+		assertEquals( t.getRight().getRight().toString(), "\\\"welt\\\"" );
+	}
+
+	@Test
+	public void testJ() {
+		
+		Parser p = new Parser("&(key1=\"hal=lo\",key2=\"we~lt\")");
+		Tuple t = p.getRoot();
+		
+		assertEquals( t.getType(), Type.AND );
+		assertEquals( t.getLeft().getType(), Type.LEAF );
+		assertEquals( t.getLeft().getLeft().getType(), Type.KEY );
+		assertEquals( t.getLeft().getLeft().toString(), "key1" );
+		assertEquals( t.getLeft().getRight().getType(), Type.VALUE );
+		assertEquals( t.getLeft().getRight().toString(), "hal=lo" );
+		
+		assertEquals( t.getRight().getType(), Type.LEAF );
+		assertEquals( t.getRight().getLeft().getType(), Type.KEY );
+		assertEquals( t.getRight().getLeft().toString(), "key2" );
+		assertEquals( t.getRight().getRight().getType(), Type.VALUE );
+		assertEquals( t.getRight().getRight().toString(), "we~lt" );
 	}
 
 }

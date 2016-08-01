@@ -70,15 +70,24 @@ public final class Parser {
 				throw new IllegalArgumentException("The operator '"+s+"' of the statement '"+
 						stmt+"' is not valid (usage: &, |, !).;");
 			
+			// (key1=value,key2=value,key3=value,...)
+			// If there are more than 2 elements in a parameter list
+			// the and|or parameters are processed here.
+			
 			s = stmt.substring(s.length());
-			return parses(s, t);
+			return t==Type.NOT ? new Monade(parses(s, t), t): parses(s, t);
 		}else if( hasSeparator(stmt) ){
 			//is tuple
 			s = readBeforeSeparator(stmt);
 			Tuple k = parses(s, Type.KEY);
+			char t = stmt.charAt(s.length());
 			s = stmt.substring(s.length()+1);
 			Tuple v = parses(s, Type.VALUE);
-			return new Tuple(k, v, type);
+			//like separator
+			if(t=='~') {
+				v = new Monade((Monade)v, Monade.LIKE);
+			}
+			return new Tuple(k, v, Type.LEAF);
 		}else if( hasBracket(stmt) ){
 			s = readBeforeBracket(stmt);
 			
@@ -102,7 +111,7 @@ public final class Parser {
 			for(int i=1;i<s.length();i++) {
 				char c = s.charAt(i);
 				if(c=='"' && s.charAt(i-1)!='\\') {
-					return s.substring(1, i-1);
+					return s.substring(1, i);
 				}//fi
 			}//for
 		}//fi
@@ -183,7 +192,7 @@ public final class Parser {
 	public String readBeforeSeparator(String stmt) {
 		String s = stmt.trim();
 		for(int i=0;i<s.length();i++) {
-			if(s.charAt(i)=='='){
+			if(s.charAt(i)=='=' || s.charAt(i)=='~'){
 				return s.substring(0, i).trim();
 			}//fi
 		}//for
@@ -265,7 +274,7 @@ public final class Parser {
 	 * @return
 	 */
 	public boolean hasSeparator(String stmt) {
-		return stmt.contains("=");
+		return stmt.contains("=") || stmt.contains("~");
 	}
 	
 	/**
@@ -291,7 +300,7 @@ public final class Parser {
 				b++;
 			if(s.charAt(i)==')')
 				b--;
-			if(s.charAt(i)=='"')
+			if(s.charAt(i)=='"' && s.charAt(i-1)!='\\')
 				c = !c;
 			if(s.charAt(i)==',' && b==0 && !c)
 				return i;
