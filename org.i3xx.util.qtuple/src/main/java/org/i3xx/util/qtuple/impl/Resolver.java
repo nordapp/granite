@@ -7,18 +7,23 @@ public class Resolver {
 
 	private final Tuple tuple;
 	
-	private final Map<String, String> values;
+	private final Map<String, Pattern> regCache;
 	
-	public Resolver(Tuple tuple, Map<String, String> values){
+	public Resolver(Tuple tuple, Map<String, Pattern> regCache){
 		this.tuple = tuple;
-		this.values = values;
+		this.regCache = regCache;
+	}
+	
+	public Resolver(Tuple tuple){
+		this.tuple = tuple;
+		this.regCache = null;
 	}
 	
 	/**
 	 * @return
 	 */
-	public boolean resolve() {
-		return resolve(null, tuple);
+	public boolean resolve(final Map<String, String> values) {
+		return resolve(tuple, values);
 	}
 	
 	/**
@@ -26,19 +31,19 @@ public class Resolver {
 	 * @param current
 	 * @return
 	 */
-	private boolean resolve(final Tuple parent, final Tuple current) {
+	private boolean resolve(final Tuple current, final Map<String, String> values) {
 		if(current==null)
 			return false;
 		
 		switch(current.getType()) {
 		case ROOT:
-			return resolve(current, current.getLeft());
+			return resolve(current.getLeft(), values);
 		case AND:
-			return ( resolve(current, current.getLeft()) && resolve(current, current.getRight()) );
+			return ( resolve(current.getLeft(), values) && resolve(current.getRight(), values) );
 		case OR:
-			return ( resolve(current, current.getLeft()) || resolve(current, current.getRight()) );
+			return ( resolve(current.getLeft(), values) || resolve(current.getRight(), values) );
 		case NOT:
-			return ! resolve(current, current.getLeft());
+			return ! resolve(current.getLeft(), values);
 		case LEAF:
 			if( current.getLeft()==null || current.getRight()==null )
 				return false;
@@ -52,7 +57,17 @@ public class Resolver {
 			
 			//Like compare '~'
 			if(current.getRight().getFlags()==1) {
-				Pattern p = Pattern.compile(val);
+				Pattern p = null;
+				if(regCache==null) {
+					p = Pattern.compile(val);
+				}else{
+					String k = key+"~"+val;
+					p = regCache.get(k);
+					if(p==null) {
+						p = Pattern.compile(val);
+						regCache.put(k, p);
+					}//fi
+				}//fi
 				return p.matcher(tmp).matches();
 			}
 			

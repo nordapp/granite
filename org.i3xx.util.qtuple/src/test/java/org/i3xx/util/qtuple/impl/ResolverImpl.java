@@ -23,24 +23,24 @@ public class ResolverImpl {
 	public void testA() {
 		
 		Parser p = new Parser("&(key1=hallo,key2=welt)");
-		Resolver r = new Resolver(p.getRoot(), getParams());
-		assertTrue( r.resolve() );
+		Resolver r = new Resolver(p.getRoot(), null);
+		assertTrue( r.resolve(getParams()) );
 	}
 
 	@Test
 	public void testB() {
 		
 		Parser p = new Parser("&(key1=hallo,key2~welt)");
-		Resolver r = new Resolver(p.getRoot(), getParams());
-		assertTrue( r.resolve() );
+		Resolver r = new Resolver(p.getRoot(), null);
+		assertTrue( r.resolve(getParams()) );
 	}
 
 	@Test
 	public void testC() {
 		
 		Parser p = new Parser("&(key1=hallo,key2~\"wel.\")");
-		Resolver r = new Resolver(p.getRoot(), getParams());
-		assertTrue( r.resolve() );
+		Resolver r = new Resolver(p.getRoot(), null);
+		assertTrue( r.resolve(getParams()) );
 	}
 	
 	/**
