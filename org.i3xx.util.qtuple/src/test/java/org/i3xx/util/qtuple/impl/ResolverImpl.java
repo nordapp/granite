@@ -42,6 +42,22 @@ public class ResolverImpl {
 		Resolver r = new Resolver(p.getRoot(), null);
 		assertTrue( r.resolve(getParams()) );
 	}
+
+	@Test
+	public void testD() {
+		
+		Parser p = new Parser("key1=hallo");
+		Resolver r = new Resolver(p.getRoot(), null);
+		assertTrue( r.resolve(getParams()) );
+	}
+
+	@Test
+	public void testE() {
+		
+		Parser p = new Parser("key2=hallo");
+		Resolver r = new Resolver(p.getRoot(), null);
+		assertFalse( r.resolve(getParams()) );
+	}
 	
 	/**
 	 * @return

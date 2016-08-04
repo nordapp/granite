@@ -43,6 +43,7 @@ public final class Parser {
 	 * @return
 	 */
 	public Tuple parses(String stmt, Type type) {
+		//stmt = stmt/*.trim()*/; //the central trim here is optional
 		logger.trace("parses: {}", stmt);
 		
 		String s = null;
@@ -61,7 +62,7 @@ public final class Parser {
 			Tuple v = parses(s, type);
 			return new Tuple(k, v, type);
 		}else if( isOperator(stmt) ){
-			s = readOperator(stmt);
+			s = readOperator(stmt).trim(); //needs a trim because of the equals
 			Type t = s.equals("&") ? Type.AND : 
 				s.equals("|") ? Type.OR : 
 					s.equals("!") ? Type.NOT :
@@ -94,7 +95,7 @@ public final class Parser {
 			throw new IllegalArgumentException("The operator '"+s+"' of the statement '"+
 					stmt+"' is not valid (usage: &, |, !).");
 		}else{
-			s = stmt.trim();
+			s = stmt.trim(); //needs a trim because of setting the tuple
 			
 			return new Monade(s, type);
 		}
@@ -106,7 +107,7 @@ public final class Parser {
 	 * @return The quoted String without the quotes
 	 */
 	public String readQuote(String stmt) {
-		String s = stmt.trim();
+		String s = stmt.trim(); //needs a trim because of the startsWith and endsWith
 		if(s.startsWith("\"")){
 			for(int i=1;i<s.length();i++) {
 				char c = s.charAt(i);
@@ -126,9 +127,9 @@ public final class Parser {
 	 * @return
 	 */
 	public String readBracket(String stmt) {
-		String s = stmt.trim();
+		String s = stmt.trim(); //needs a trim because of the startsWith and endsWith
 		if(s.startsWith("(") && s.endsWith(")")){
-			return s.substring(1, s.length()-1).trim();
+			return s.substring(1, s.length()-1);
 		}//fi
 		return null;
 	}
@@ -140,13 +141,13 @@ public final class Parser {
 	 * @return
 	 */
 	public String readOperator(String stmt) {
-		String s = stmt.trim();
+		String s = stmt;
 		//if(s.length()!=1)
 		//	throw new IllegalArgumentException("The statement '"+s+"' is not an operator (usage: &, |, !).");
 		
 		for(int i=0;i<s.length();i++) {
 			if(s.charAt(i)=='('){
-				return s.substring(0, i).trim();
+				return s.substring(0, i);
 			}//fi
 		}//for
 		
@@ -160,10 +161,10 @@ public final class Parser {
 	 * @return
 	 */
 	public String readBeforeBracket(String stmt) {
-		String s = stmt.trim();
+		String s = stmt;
 		for(int i=0;i<s.length();i++) {
 			if(s.charAt(i)=='('){
-				return s.substring(0, i).trim();
+				return s.substring(0, i);
 			}//fi
 		}//for
 		
@@ -177,10 +178,10 @@ public final class Parser {
 	 * @return
 	 */
 	public String readBeforeComma(String stmt) {
-		String s = stmt.trim();
+		String s = stmt;
 		int p = scanComma(s);
 		
-		return p<0 ? null : s.substring(0, p).trim();
+		return p<0 ? null : s.substring(0, p);
 	}
 	
 	/**
@@ -190,10 +191,10 @@ public final class Parser {
 	 * @return
 	 */
 	public String readBeforeSeparator(String stmt) {
-		String s = stmt.trim();
+		String s = stmt;
 		for(int i=0;i<s.length();i++) {
 			if(s.charAt(i)=='=' || s.charAt(i)=='~'){
-				return s.substring(0, i).trim();
+				return s.substring(0, i);
 			}//fi
 		}//for
 		
@@ -284,7 +285,7 @@ public final class Parser {
 	 * @return
 	 */
 	public boolean hasComma(String stmt) {
-		String s = stmt.trim();
+		String s = stmt;
 		return scanComma(s)>-1;
 	}
 	

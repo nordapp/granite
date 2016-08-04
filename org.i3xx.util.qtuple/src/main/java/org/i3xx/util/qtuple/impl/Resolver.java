@@ -9,13 +9,28 @@ public class Resolver {
 	
 	private final Map<String, Pattern> regCache;
 	
+	/**
+	 * @param tuple The root node of the tree of tuples
+	 * @param regCache The cache map for the regular expression
+	 */
 	public Resolver(Tuple tuple, Map<String, Pattern> regCache){
 		this.tuple = tuple;
 		this.regCache = regCache;
 	}
 	
+	/**
+	 * @param tuple The root node of the tree of tuples
+	 */
 	public Resolver(Tuple tuple){
 		this.tuple = tuple;
+		this.regCache = null;
+	}
+	
+	/**
+	 * @param stmt The filter statement
+	 */
+	public Resolver(String stmt){
+		this.tuple = (new Parser(stmt)).getRoot();
 		this.regCache = null;
 	}
 	
