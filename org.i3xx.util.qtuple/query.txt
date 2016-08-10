@@ -1,0 +1,25 @@
+The query is defined as described here:
+
+key-char        ::=  a-z A-Z 0-9 '_' The character of a key field (RegExp: \w)
+char            ::=  Any character, but a quote must be protected by a backslash
+
+key             ::=  key-char*
+value           ::=  '"' char* '"' A value is a quoted char array. The quotes are optional if the value
+					 contains only key chars and the slash. (RegExp: [\w-])
+
+separator-char  ::=  '=' '~' The separator between key and value. After '~' follows a regular expression
+tuple           ::=  key separator-char value
+
+operator        ::=  '!' '|' '&' The operators are ! is not (not is a monade), & is or, & is and
+statement       ::=  operator '(' tuple | '(' statement ')' ( ',' tuple | statement )* ')'
+
+
+Examples:
+
+  &(field1="John",family-name="Doe",city="Newcastle")
+  &(first-name="John",|(family-name="Doe", family-name="Smith"),city="Newcastle")
+  |(city=Manchester,city=Newcastle,city=London)
+
+
+
+
