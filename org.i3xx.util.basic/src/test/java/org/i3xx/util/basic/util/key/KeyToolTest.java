@@ -25,8 +25,8 @@ public class KeyToolTest {
 		
 		UUID uuid = UUID.randomUUID();
 		
-		BigInteger bigInt = KeyTool.uuidToBigInteger(uuid);
-		UUID uui2 = KeyTool.bigIntegerToUuid(bigInt);
+		BigInteger bigInt = KeyTool.toBigInteger(uuid);
+		UUID uui2 = KeyTool.toUuid(bigInt);
 		
 		//The assertion
 		assertEquals(uuid.toString(), uui2.toString());
@@ -40,8 +40,8 @@ public class KeyToolTest {
 		
 		BigInteger bigInt = new BigInteger(buf);
 		
-		UUID uuid = KeyTool.bigIntegerToUuid(bigInt);
-		BigInteger bigIn2 = KeyTool.uuidToBigInteger(uuid);
+		UUID uuid = KeyTool.toUuid(bigInt);
+		BigInteger bigIn2 = KeyTool.toBigInteger(uuid);
 		
 		// The assertion
 		assertEquals(bigInt.toString(), bigIn2.toString());
@@ -54,13 +54,13 @@ public class KeyToolTest {
 		new Random().nextBytes(buf);
 		
 		BigInteger bigInt = new BigInteger(buf);
-		UUID uuid = KeyTool.bigIntegerToUuid(bigInt);
+		UUID uuid = KeyTool.toUuid(bigInt);
 		
 		//A test
-		assertEquals(bigInt.toString(), KeyTool.uuidToBigInteger(uuid).toString());
+		assertEquals(bigInt.toString(), KeyTool.toBigInteger(uuid).toString());
 		
-		long[] arr1 = KeyTool.bigIntegerToLong2(bigInt);
-		long[] arr2 = KeyTool.uuidToLong2(uuid);
+		long[] arr1 = KeyTool.toLong2(bigInt);
+		long[] arr2 = KeyTool.toLong2(uuid);
 		
 		//The assertion
 		assertArrayEquals( arr1, arr2 );
@@ -73,14 +73,14 @@ public class KeyToolTest {
 		long mostSigBits = r.nextLong();
 		long leastSigBits = r.nextLong();
 		
-		BigInteger bigInt = KeyTool.long2ToBigInteger(mostSigBits, leastSigBits);
-		UUID uuid = KeyTool.long2ToUuid(mostSigBits, leastSigBits);
+		BigInteger bigInt = KeyTool.toBigInteger(mostSigBits, leastSigBits);
+		UUID uuid = KeyTool.toUuid(mostSigBits, leastSigBits);
 		
 		//A test
-		assertEquals(bigInt.toString(), KeyTool.uuidToBigInteger(uuid).toString());
+		assertEquals(bigInt.toString(), KeyTool.toBigInteger(uuid).toString());
 		
-		long[] arr1 = KeyTool.bigIntegerToLong2(bigInt);
-		long[] arr2 = KeyTool.uuidToLong2(uuid);
+		long[] arr1 = KeyTool.toLong2(bigInt);
+		long[] arr2 = KeyTool.toLong2(uuid);
 		
 		//The assertion
 		assertArrayEquals( arr1, arr2 );
