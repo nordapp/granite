@@ -1,10 +1,12 @@
 # util
-Utility bundles
+<html><body>
+<p>Utility bundles</p>
 
-Note:
-We switch our OSGi Projects to SpringBoot and do not need some of the artifacts in the util package any longer.
-These artifacts are not deprecated but they are currently not under development.
+<p>Note:</p>
+<p>We switch our OSGi Projects to SpringBoot and do not need some of the artifacts in the util package any longer.
+These artifacts are not deprecated but they are currently not under development.</p>
 
-The packages we use are:
-org.i3xx.util.basic
-org.i3xx.util.mutable
+<p>The packages we use are:<p>
+<p>org.i3xx.util.basic<br>
+org.i3xx.util.qtuple<p>
+</body></html>
