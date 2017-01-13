@@ -15,7 +15,7 @@ public interface IGeneratorService<E> {
 	 * @param guid The guid of the object
 	 * @return The object or null if it isn't available
 	 */
-	E getObject(long guid);
+	E getObject(Long guid);
 	
 	/**
 	 * Gets the object by it's uuid
@@ -52,7 +52,7 @@ public interface IGeneratorService<E> {
 	 * @param history The history of the object
 	 * @return The object or a new one if it isn't available
 	 */
-	E getOrCreateObject(long guid, String uuid, String history);
+	E getOrCreateObject(Long guid, String uuid, String history);
 	
 	/**
 	 * Saves the object
@@ -64,5 +64,5 @@ public interface IGeneratorService<E> {
 	/**
 	 * @param guid
 	 */
-	void delete(long guid);
+	void delete(Long guid);
 }
