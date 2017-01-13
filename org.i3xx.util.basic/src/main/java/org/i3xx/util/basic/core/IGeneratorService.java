@@ -53,4 +53,11 @@ public interface IGeneratorService<E> {
 	 * @return The object or a new one if it isn't available
 	 */
 	E getOrCreateObject(long guid, String uuid, String history);
+	
+	/**
+	 * Saves the object
+	 * 
+	 * @param e The object to save
+	 */
+	void save(E e);
 }
