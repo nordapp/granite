@@ -55,11 +55,12 @@ public interface IGeneratorService<E> {
 	E getOrCreateObject(Long guid, String uuid, String history);
 	
 	/**
-	 * Saves the object
+	 * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the entity instance completely.
 	 * 
 	 * @param e The object to save
+	 * @returns The object instance after save.
 	 */
-	void save(E e);
+	E save(E e);
 	
 	/**
 	 * @param guid
