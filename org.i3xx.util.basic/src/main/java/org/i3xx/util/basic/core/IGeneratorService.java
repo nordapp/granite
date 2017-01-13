@@ -60,4 +60,9 @@ public interface IGeneratorService<E> {
 	 * @param e The object to save
 	 */
 	void save(E e);
+	
+	/**
+	 * @param guid
+	 */
+	void delete(long guid);
 }
