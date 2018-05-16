@@ -48,7 +48,6 @@
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>license-maven-plugin</artifactId>
-			<version>1.8</version>
 			<configuration>
 				<organizationName>${project.organizationName}</organizationName>
 				<inceptionYear>${project.inceptionYear}</inceptionYear>
@@ -56,12 +55,14 @@
 				<licenseName>apache_v2</licenseName>
 			</configuration>
 			<executions>
+				<!--
 				<execution>
 					<id>update-project-license</id>
 					<goals>
 						<goal>update-project-license</goal>
 					</goals>
 				</execution>
+				-->
 				<execution>
 					<id>update-file-header</id>
 					<goals>
