@@ -4,7 +4,7 @@
   <!-- <groupId>org.i3xx.project</groupId> -->
   <groupId>org.i3xx.parent</groupId>
   <artifactId>parent-project</artifactId>
-  <version>0.2.11-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>parent-project</name>
@@ -15,7 +15,7 @@
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.organizationName>I.D.S. DialogSysteme GmbH</project.organizationName>
   	
-  	<project.inceptionYear>2014</project.inceptionYear>
+  	<project.inceptionYear>2018</project.inceptionYear>
   	
   	<util.basic.version>[0.1.0,0.2)</util.basic.version>
   	<test.workspace.version>[0.1.4,0.2)</test.workspace.version>
@@ -24,7 +24,7 @@
   	<util.store.version>[0.1.0,0.2)</util.store.version>
   	<util.symbol.version>[0.1.0,0.2)</util.symbol.version>
   	<util.whiteboard.version>[0.1.0,0.2)</util.whiteboard.version>
-  	<osgi.core.version>5.0.0</osgi.core.version>
+  	<!-- <osgi.core.version>5.0.0</osgi.core.version> -->
   	<!-- Fix to pass a property to subprocess test:test in release:prepare -->
   	<release.arguments />
   </properties>
@@ -181,6 +181,7 @@
 		</dependency>
 	  	
 	  	<!-- OSGi core -->
+	  	<!-- 
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
@@ -191,6 +192,7 @@
 			<artifactId>org.osgi.compendium</artifactId>
 			<version>5.0.0</version>
 		</dependency>
+		-->
 		
 		<!-- Apache -->
 		<dependency>
@@ -234,6 +236,7 @@
 			<version>1.1.1</version>
 		</dependency>
 		
+		<!-- 
 		<dependency>
 		  <groupId>org.apache.tika</groupId>
 		  <artifactId>tika-core</artifactId>
@@ -249,6 +252,7 @@
 		    <artifactId>sshd-core</artifactId>
 		    <version>0.12.0</version>
 		</dependency>
+		-->
 		
 		<!-- Logging -->
 		<dependency>
