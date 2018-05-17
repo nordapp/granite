@@ -69,7 +69,9 @@ import org.slf4j.LoggerFactory;
  */
 public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry, IStoreExport {
 	
-	private static Logger logger = LoggerFactory.getLogger(ExtStore.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExtStore.class);
+	
+	private static final String BYTE_ENC = "utf-8";
 	
 	public final static String infodir = "info";
 	
@@ -755,7 +757,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	 * @throws IOException
 	 */
 	public synchronized String readString(BigInteger key, BigInteger id) throws IOException {
-		InputStreamReader ir = new InputStreamReader(read(key, id), "iso-8859-1");
+		InputStreamReader ir = new InputStreamReader(read(key, id), BYTE_ENC);
 		StringWriter out = new StringWriter();
 		
 		int c = 0;
@@ -868,7 +870,7 @@ public class ExtStore implements ITimer, IControlStore, IStorePart, IStoreEntry,
 	 */
 	public synchronized void writeString(String data, StoreEntry entry) throws IOException {
 		OutputStream out = write(entry);
-		OutputStreamWriter wr = new OutputStreamWriter(out, "iso-8859-1");
+		OutputStreamWriter wr = new OutputStreamWriter(out, BYTE_ENC);
 		wr.write(data);
 		wr.flush();
 		wr.close();

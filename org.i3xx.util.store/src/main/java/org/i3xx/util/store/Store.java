@@ -66,7 +66,9 @@ import org.slf4j.LoggerFactory;
  */
 public class Store implements ITimer, IControlStore, IStorePart, IStoreEntry {
 	
-	private transient static Logger logger = LoggerFactory.getLogger(Store.class);
+	private static final Logger logger = LoggerFactory.getLogger(Store.class);
+	
+	private static final String BYTE_ENC = "utf-8";
 	
 	public final static String infodir = "info";
 	
@@ -742,7 +744,7 @@ public class Store implements ITimer, IControlStore, IStorePart, IStoreEntry {
 		// Note MyInputStream may clear the entry at close.
 		//
 		
-		InputStreamReader ir = new InputStreamReader(read(key, id), "iso-8859-1");
+		InputStreamReader ir = new InputStreamReader(read(key, id), BYTE_ENC);
 		StringWriter out = new StringWriter();
 		
 		int c = 0;
@@ -855,7 +857,7 @@ public class Store implements ITimer, IControlStore, IStorePart, IStoreEntry {
 	 */
 	public synchronized void writeString(String data, StoreEntry entry) throws IOException {
 		OutputStream out = write(entry);
-		OutputStreamWriter wr = new OutputStreamWriter(out, "iso-8859-1");
+		OutputStreamWriter wr = new OutputStreamWriter(out, BYTE_ENC);
 		wr.write(data);
 		wr.flush();
 		wr.close();
