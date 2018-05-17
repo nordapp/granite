@@ -1,6 +1,6 @@
 The query is defined as described here:
 
-key-char        ::=  a-z A-Z 0-9 '_' The character of a key field (RegExp: \w)
+key-char        ::=  a-z A-Z 0-9 '_' The character of a key field (like RegExp: \w)
 char            ::=  Any character, but a quote must be protected by a backslash
 
 key             ::=  key-char*
