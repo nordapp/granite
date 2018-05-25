@@ -2,11 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.store</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.3.1-SNAPSHOT</version>
   <name>NordApp OfficeBase :: util :: store</name>
   <url>http://maven.apache.org</url>
-  <description>Managed File Store Project</description>
-  <packaging>bundle</packaging>
+  <description>Managed File Store Project
+uses UTF-8 instead of ISO-8859-1</description>
+  <packaging>jar</packaging>
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,48 +21,16 @@
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.2.10</version>
+    <version>0.3.0-SNAPSHOT</version>
   </parent>
     
   <build>
 	<plugins>
-		<plugin>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>maven-bundle-plugin</artifactId>
-			<version>2.3.7</version>
-			<extensions>true</extensions>
-			<configuration>
-				<instructions>
-					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-					<Bundle-Name>${project.name}</Bundle-Name>
-					<Bundle-Version>${project.version}</Bundle-Version>
-					<Bundle-Activator>org.i3xx.util.store.activator.DummyActivator</Bundle-Activator>
-					
-					<Export-Package>
-						org.i3xx.util.store;uses:="org.i3xx.util.basic.*",
-						org.i3xx.util.store.activator
-					</Export-Package>
-					<Import-Package>
-						org.i3xx.util.basic.activator;version="${util.basic.version}",
-						org.i3xx.util.basic.core;version="${util.basic.version}",
-						org.i3xx.util.basic.io;version="${util.basic.version}",
-						org.osgi.framework,
-						org.slf4j,
-						org.xml.sax
-					</Import-Package>
-					<Private-Package />
-				</instructions>
-			</configuration>
-		</plugin>
 	</plugins>
   </build>
   
   <dependencies>
-  	<dependency>
-  		<groupId>org.osgi</groupId>
-  		<artifactId>org.osgi.core</artifactId>
-  	</dependency>  
-	
+  
 	<dependency>
 		<groupId>org.i3xx.util</groupId>
 		<artifactId>org.i3xx.util.basic</artifactId>

@@ -1,5 +1,7 @@
 package org.i3xx.util.general.setup.impl;
 
+import org.i3xx.util.basic.platform.ServiceContext;
+
 /*
  * #%L
  * NordApp OfficeBase :: zero
@@ -22,7 +24,6 @@ package org.i3xx.util.general.setup.impl;
 
 
 import org.i3xx.util.general.setup.model.SetupService;
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,12 +40,12 @@ public class SetupServiceImpl implements SetupService {
 	/** The mandator setup service */
 	private Setup generalSetup;
 	
-	/** The osgi bundle context */
-	private BundleContext bundleContext;
+	/** The service context */
+	private ServiceContext serviceContext;
 	
 	public SetupServiceImpl() {
 		generalSetup = null;
-		bundleContext = null;
+		serviceContext = null;
 	}
 	
 	/**
@@ -62,22 +63,22 @@ public class SetupServiceImpl implements SetupService {
 	}
 
 	/**
-	 * @return the bundleContext
+	 * @return the serviceContext
 	 */
-	public BundleContext getBundleContext() {
-		return bundleContext;
+	public ServiceContext getServiceContext() {
+		return serviceContext;
 	}
 
 	/**
-	 * @param bundleContext the bundleContext to set
+	 * @param serviceContext the serviceContext to set
 	 */
-	public void setBundleContext(BundleContext bundleContext) {
-		this.bundleContext = bundleContext;
+	public void setServiceContext(ServiceContext serviceContext) {
+		this.serviceContext = serviceContext;
 	}
 	
 	public void startUp() {
 		//does nothing but logging
-		logger.info("Service start up '{}' '{}' '{}'.", generalSetup.getTitle(), generalSetup.getId(), generalSetup.getRoot());
+		logger.info("Service start up '{}' '{}' '{}'.", generalSetup.getObtitle(), generalSetup.getObid(), generalSetup.getObroot());
 	}
 	
 }

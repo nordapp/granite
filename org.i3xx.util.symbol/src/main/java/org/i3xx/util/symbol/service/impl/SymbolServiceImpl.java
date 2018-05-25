@@ -28,9 +28,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.i3xx.util.basic.platform.ServiceContext;
 import org.i3xx.util.symbol.service.model.SymbolFileLocationService;
 import org.i3xx.util.symbol.service.model.SymbolService;
-import org.osgi.framework.BundleContext;
 
 public class SymbolServiceImpl implements SymbolService {
 	
@@ -130,7 +130,7 @@ public class SymbolServiceImpl implements SymbolService {
 	}
 	
 	/** The osgi bundle context */
-	private BundleContext bundleContext;
+	private ServiceContext serviceContext;
 	
 	/** The SetupService to get the base data */
 	private SymbolFileLocationService locationService;
@@ -140,7 +140,7 @@ public class SymbolServiceImpl implements SymbolService {
 	
 	/** Creates a new service */
 	public SymbolServiceImpl() {
-		bundleContext = null;
+		serviceContext = null;
 		locationService = null;
 		backup = null;
 	}
@@ -178,17 +178,17 @@ public class SymbolServiceImpl implements SymbolService {
 	}
 
 	/**
-	 * @return the bundleContext
+	 * @return the serviceContext
 	 */
-	public BundleContext getBundleContext() {
-		return bundleContext;
+	public ServiceContext getServiceContext() {
+		return serviceContext;
 	}
 
 	/**
-	 * @param bundleContext the bundleContext to set
+	 * @param serviceContext the serviceContext to set
 	 */
-	public void setBundleContext(BundleContext bundleContext) {
-		this.bundleContext = bundleContext;
+	public void setServiceContext(ServiceContext serviceContext) {
+		this.serviceContext = serviceContext;
 	}
 
 	/**

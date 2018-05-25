@@ -24,8 +24,8 @@ package org.i3xx.util.platform.impl;
 import java.util.NoSuchElementException;
 
 import org.i3xx.util.basic.platform.Platform;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
+import org.i3xx.util.basic.platform.ServiceContext;
+import org.i3xx.util.basic.platform.ServiceReference;
 
 public class PlatformImpl {
 	
@@ -34,7 +34,7 @@ public class PlatformImpl {
 	 * 
 	 * @return The platform object of the current platform
 	 */
-	public static final Platform getPlatformService(BundleContext context) {
+	public static final Platform getPlatformService(ServiceContext context) {
 		ServiceReference<Platform> psrv = context.getServiceReference(Platform.class);
 		if(psrv==null)
 			throw new NoSuchElementException("The requested service reference 'Platform' is not available.");

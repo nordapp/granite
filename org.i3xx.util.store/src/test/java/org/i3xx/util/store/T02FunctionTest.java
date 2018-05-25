@@ -38,7 +38,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 
-public class T01FunctionTest {
+public class T02FunctionTest {
 	
 	static FilePath RES_LOC = null;
 	
@@ -60,7 +60,7 @@ public class T01FunctionTest {
 	public void createData() throws IOException {
 		String home = RES_LOC.add("store/sdb").getPath();
 		
-		Store store = new Store("file:///"+home);
+		ExtStore store = new ExtStore("file:///"+home);
 		store.loadData();
 		store.gc();
 		

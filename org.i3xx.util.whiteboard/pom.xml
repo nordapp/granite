@@ -5,7 +5,7 @@
   <version>0.1.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
   <name>NordApp OfficeBase :: Whiteboard</name>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <description>Support of the whiteboard pattern. Avoid dependencies.</description>
   
   <licenses>
@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.2.10</version>
+    <version>0.3.0-SNAPSHOT</version>
   </parent>
   
   <properties>
@@ -34,31 +34,6 @@
   
   <build>
 	<plugins>
-		<plugin>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>maven-bundle-plugin</artifactId>
-			<version>2.3.7</version>
-			<extensions>true</extensions>
-			<configuration>
-				<instructions>
-				
-					<Bundle-Activator />
-					<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-					<Bundle-Name>${project.name}</Bundle-Name>
-					<Bundle-Version>${project.version}</Bundle-Version>
-					
-					<Export-Package>
-						org.i3xx.util.whiteboard.annotation,
-					</Export-Package>
-					<Import-Package>
-						org.osgi.framework,
-						org.slf4j,
-					</Import-Package>
-					<Private-Package />
-					<!--<Export-Service></Export-Service>-->
-				</instructions>
-			</configuration>
-		</plugin>
 	</plugins>
 	
   	<resources>
@@ -78,10 +53,6 @@
   </build>
 
   <dependencies>
-  	<dependency>
-  		<groupId>org.osgi</groupId>
-  		<artifactId>org.osgi.core</artifactId>
-  	</dependency>
     
 	<dependency>
 		<groupId>log4j</groupId>

@@ -26,25 +26,25 @@ import java.io.IOException;
 
 import org.i3xx.util.basic.io.FilePath;
 import org.i3xx.util.basic.platform.Platform;
+import org.i3xx.util.basic.platform.ServiceContext;
 import org.i3xx.util.general.setup.impl.Setup;
 import org.i3xx.util.general.setup.model.SetupService;
 import org.i3xx.util.platform.impl.AvailableKeys;
 import org.i3xx.util.symbol.service.model.SymbolFileLocationService;
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 public class SymbolFileLocationServiceImpl implements SymbolFileLocationService {
 	
-	private Logger logger = LoggerFactory.getLogger(SymbolFileLocationService.class);
+	private static final Logger logger = LoggerFactory.getLogger(SymbolFileLocationService.class);
 	
 	private final File location;
 	
-	public SymbolFileLocationServiceImpl(BundleContext bundleContext, SetupService setupService, Platform platform) throws IOException {
+	public SymbolFileLocationServiceImpl(ServiceContext serviceContext, SetupService setupService, Platform platform) throws IOException {
 		
 		Setup setup = setupService.getGeneralSetup();
-		String _root = Setup.setCurrentId(setup.getRoot(), "");
+		String _root = Setup.setCurrentId(setup.getObroot(), "");
 		FilePath resLoc = null;
 		logger.debug("Root entry of the general setup: {}", _root);
 		if(_root.startsWith(".")){
