@@ -17,14 +17,14 @@
   	
   	<project.inceptionYear>2018</project.inceptionYear>
   	
-  	<node.base.version>[0.0.1-SNAPSHOT]</node.base.version>
+  	<node.base.version>[0.0.1-SNAPSHOT)</node.base.version>
   	<util.basic.version>[0.1.0,0.2.0)</util.basic.version>
-  	<test.workspace.version>[0.1.4,0.3.0-SNAPSHOT]</test.workspace.version>
-  	<util.general.setup.version>[0.1.0,0.2.0-SNAPSHOT]</util.general.setup.version>
-  	<util.platform.version>[0.1.0,0.2.0-SNAPSHOT]</util.platform.version>
+  	<test.workspace.version>[0.1.4,0.3.0-SNAPSHOT)</test.workspace.version>
+  	<util.general.setup.version>[0.1.0,0.2.0-SNAPSHOT)</util.general.setup.version>
+  	<util.platform.version>[0.1.0,0.2.0-SNAPSHOT)</util.platform.version>
   	<util.store.version>[0.1.0,0.2)</util.store.version>
   	<util.symbol.version>[0.1.0,0.2)</util.symbol.version>
-  	<util.whiteboard.version>[0.1.0,0.3.0-SNAPSHOT]</util.whiteboard.version>
+  	<util.whiteboard.version>[0.1.0,0.3.0-SNAPSHOT)</util.whiteboard.version>
   	<!-- <osgi.core.version>5.0.0</osgi.core.version> -->
   	<!-- Fix to pass a property to subprocess test:test in release:prepare -->
   	<release.arguments />
