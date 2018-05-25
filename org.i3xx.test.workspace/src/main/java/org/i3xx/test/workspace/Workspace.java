@@ -103,7 +103,10 @@ public class Workspace {
 		if(srcPath.length()<=1)
 			return null;
 		
-		srcPath = srcPath.substring(1);
+		//skip leading '/' if os is windows
+		if(File.separatorChar=='\\') {
+			srcPath = srcPath.substring(1);
+		}
 		srcPath = nibble(srcPath, resource);
 		srcPath = nibble(srcPath, "/target/classes/");
 		

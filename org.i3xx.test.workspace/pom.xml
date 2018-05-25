@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.i3xx.parent</groupId>
     <artifactId>parent-project</artifactId>
-    <version>0.2.7</version>
+    <version>0.3.0-SNAPSHOT</version>
   </parent>  
   
   <licenses>
@@ -44,6 +44,20 @@
     
   <build>
 	<plugins>
+		
+		<plugin>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<configuration>
+				<systemPropertyVariables>
+					<!-- Copy this and uncomment the line to use the -->
+					<!-- Workspace.location function. -->
+					<!-- <workspace.home>${basedir}</workspace.home> -->
+					<!-- The module test needs the String below, -->
+					<!-- remove it to get your test running. -->
+					<workspace.home>Unit::Test::String</workspace.home>
+				</systemPropertyVariables>
+			</configuration>
+		</plugin>		
 		
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
