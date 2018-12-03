@@ -14,14 +14,8 @@
   
   <scm>
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>org.i3xx.util-0.0.0</tag>
+    <tag>org.i3xx.util.workspace-0.0.0</tag>
   </scm>
-  
-  <parent>
-    <groupId>org.i3xx.parent</groupId>
-    <artifactId>parent-project</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
-  </parent>  
   
   <licenses>
     <license>
@@ -38,6 +32,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+	    <version>4.12</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -46,63 +41,170 @@
 	<plugins>
 		
 		<plugin>
-			<artifactId>maven-surefire-plugin</artifactId>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.3</version>
 			<configuration>
-				<systemPropertyVariables>
-					<!-- Copy this and uncomment the line to use the -->
-					<!-- Workspace.location function. -->
-					<!-- <workspace.home>${basedir}</workspace.home> -->
-					<!-- The module test needs the String below, -->
-					<!-- remove it to get your test running. -->
-					<workspace.home>Unit::Test::String</workspace.home>
-				</systemPropertyVariables>
+				<target>1.6</target>
+				<source>1.6</source>
 			</configuration>
-		</plugin>		
+		</plugin>
 		
 		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>license-maven-plugin</artifactId>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.9</version>
 			<configuration>
-				<organizationName>${project.organizationName}</organizationName>
-				<inceptionYear>${project.inceptionYear}</inceptionYear>
-				<projectName>${project.name}</projectName>
-				<licenseName>apache_v2</licenseName>
+				<forkMode>once</forkMode>
 			</configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+		   <artifactId>maven-deploy-plugin</artifactId>
+		   <version>2.8.2</version>
+		   <configuration>
+		      <skip>true</skip>
+		   </configuration>
+		</plugin>
+		
+		<plugin>
+		   <groupId>org.apache.maven.plugins</groupId>
+		   <artifactId>maven-release-plugin</artifactId>
+		   <version>2.5.1</version>
+		   <configuration>
+			  <checkModificationExcludes>
+				 <checkModificationExclude>License.txt</checkModificationExclude>
+			  </checkModificationExcludes>
+  		      <!-- Fix to pass a property to subprocess test:test in release:prepare -->
+  		      <arguments>${release.arguments}</arguments>
+		   </configuration>
+    	</plugin>
+		
+		<plugin>
+		   <groupId>org.sonatype.plugins</groupId>
+		   <artifactId>nexus-staging-maven-plugin</artifactId>
+		   <version>1.6.3</version>
+		   <extensions>true</extensions>
+		   <configuration>
+		   	 <serverId>ossrh</serverId>
+		   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		   </configuration>
+		</plugin>
+		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>2.3</version>
 			<executions>
-				<!--
 				<execution>
-					<id>update-project-license</id>
+					<phase>package</phase>
 					<goals>
-						<goal>update-project-license</goal>
+						<goal>shade</goal>
 					</goals>
-				</execution>
-				-->
-				<execution>
-					<id>update-file-header</id>
-					<goals>
-						<goal>update-file-header</goal>
-					</goals>
-					<phase>process-sources</phase>
 					<configuration>
-						<roots>
-							<root>src/main/java</root>
-							<root>src/test/java</root>
-						</roots>
+						<transformers>
+							<transformer
+								implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<manifestEntries>
+									<Main-Class>org.i3xx.util.basic</Main-Class>
+									<!--<Main-Verticle>org.i3xx.util.basic.Main</Main-Verticle>-->
+								</manifestEntries>
+							</transformer>
+						</transformers>
+						<artifactSet/>
+						<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
 					</configuration>
-				</execution>
-				<execution>
-					<id>download-licenses</id>
-					<goals>
-						<goal>download-licenses</goal>
-					</goals>
 				</execution>
 			</executions>
 		</plugin>
-		
+
 	</plugins>
-	
+		
 	<pluginManagement>
 		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<target>1.6</target>
+					<source>1.6</source>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<forkMode>once</forkMode>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-deploy-plugin</artifactId>
+			   <version>2.8.2</version>
+			   <configuration>
+			      <skip>true</skip>
+			   </configuration>
+			</plugin>
+			
+			<plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-release-plugin</artifactId>
+			   <version>2.5.1</version>
+			   <configuration>
+				  <checkModificationExcludes>
+					 <checkModificationExclude>License.txt</checkModificationExclude>
+				  </checkModificationExcludes>
+	  		      <!-- Fix to pass a property to subprocess test:test in release:prepare -->
+	  		      <arguments>${release.arguments}</arguments>
+			   </configuration>
+	    	</plugin>
+			
+			<plugin>
+			   <groupId>org.sonatype.plugins</groupId>
+			   <artifactId>nexus-staging-maven-plugin</artifactId>
+			   <version>1.6.3</version>
+			   <extensions>true</extensions>
+			   <configuration>
+			   	 <serverId>ossrh</serverId>
+			   	 <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+			   	 <autoReleaseAfterClose>true</autoReleaseAfterClose>
+			   </configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>org.i3xx.util.basic</Main-Class>
+										<!--<Main-Verticle>org.i3xx.util.basic.Main</Main-Verticle>-->
+									</manifestEntries>
+								</transformer>
+							</transformers>
+							<artifactSet/>
+							<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		
 			<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 			<plugin>
 				<groupId>org.eclipse.m2e</groupId>
@@ -134,5 +236,86 @@
 	</pluginManagement>
 	
   </build>
+  
+  <distributionManagement>
+	<snapshotRepository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	</snapshotRepository>
+    <repository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+	</repository>
+	
+  </distributionManagement>
+  
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      
+      <build>
+        <plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<configuration>
+					<organizationName>${project.organizationName}</organizationName>
+					<inceptionYear>${project.inceptionYear}</inceptionYear>
+					<projectName>${project.name}</projectName>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+				<executions>
+					<execution>
+						<id>update-project-license</id>
+						<goals>
+							<goal>update-project-license</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>update-file-header</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test/java</root>
+							</roots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download-licenses</id>
+						<goals>
+							<goal>download-licenses</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-gpg-plugin</artifactId>
+			  <executions>
+			    <execution>
+			      <id>sign-artifacts</id>
+			      <phase>verify</phase>
+			      <goals>
+			        <goal>sign</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
+			
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   
   </project>
