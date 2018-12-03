@@ -16,7 +16,7 @@
   	<!-- <url>scm:git:https://github.com/nordapp/util</url>
   	<connection>scm:git:https://github.com/nordapp/util</connection>-->
   	<developerConnection>scm:git:https://github.com/nordapp/util</developerConnection>
-    <tag>org.i3xx.util.basic-0.2.0</tag>
+    <tag>org.i3xx.util.qtuple-0.0.1</tag>
   </scm>
   
   <dependencies>
