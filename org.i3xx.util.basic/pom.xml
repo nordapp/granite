@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.i3xx.util</groupId>
   <artifactId>org.i3xx.util.basic</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>NordApp :: util :: basic</name>
   <url>http://maven.apache.org</url>
   <description>Basic tools and utilities - This project should not have dependencies, but defines some core interfaces and techniques. Removes all depenmdencies to OSGi</description>
@@ -26,6 +26,7 @@
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
+	    <scope>test</scope>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
@@ -36,6 +37,7 @@
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-log4j12</artifactId>
 		<version>1.7.5</version>
+	    <scope>test</scope>
 	</dependency> -->
   	
     <dependency>
