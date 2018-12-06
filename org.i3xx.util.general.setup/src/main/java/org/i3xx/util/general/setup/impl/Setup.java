@@ -3,7 +3,7 @@ package org.i3xx.util.general.setup.impl;
 import java.math.BigInteger;
 import java.util.GregorianCalendar;
 
-import org.i3xx.node.Base;
+import org.i3xx.node.domain.Base;
 
 /*
  * #%L
@@ -139,8 +139,9 @@ public class Setup implements Base {
 	/**
 	 * @param obid the obid to set
 	 */
-	public void setObid(Long obid) {
+	public Base setObid(Long obid) {
 		this.obid = obid;
+		return this;
 	}
 
 	/**
@@ -153,8 +154,9 @@ public class Setup implements Base {
 	/**
 	 * @param obguid the obguid to set
 	 */
-	public void setObguid(Long obguid) {
+	public Base setObguid(Long obguid) {
 		this.obguid = obguid;
+		return this;
 	}
 
 	/**
@@ -174,8 +176,9 @@ public class Setup implements Base {
 	/**
 	 * @param obctime the obctime to set
 	 */
-	public void setObctime(GregorianCalendar obctime) {
+	public Base setObctime(GregorianCalendar obctime) {
 		this.obctime = obctime;
+		return this;
 	}
 
 	/**
@@ -188,15 +191,17 @@ public class Setup implements Base {
 	/**
 	 * @param obutime the obutime to set
 	 */
-	public void setObutime(GregorianCalendar obutime) {
+	public Base setObutime(GregorianCalendar obutime) {
 		this.obutime = obutime;
+		return this;
 	}
 
 	/**
 	 * @param obuuid the obuuid to set
 	 */
-	public void setObuuid(String obuuid) {
+	public Base setObuuid(String obuuid) {
 		this.obuuid = obuuid;
+		return this;
 	}
 
 	/**
@@ -209,8 +214,9 @@ public class Setup implements Base {
 	/**
 	 * @param obhistory the obhistory to set
 	 */
-	public void setObhistory(String obhistory) {
+	public Base setObhistory(String obhistory) {
 		this.obhistory = obhistory;
+		return this;
 	}
 	
 	/**
@@ -223,8 +229,9 @@ public class Setup implements Base {
 	/**
 	 * @param obhash the obhash to set
 	 */
-	public void setObhash(Long obhash) {
+	public Base setObhash(Long obhash) {
 		this.obhash = obhash;
+		return this;
 	}
 
 	/**
@@ -237,8 +244,9 @@ public class Setup implements Base {
 	/**
 	 * @param obflags the obflags to set
 	 */
-	public void setObflags(BigInteger obflags) {
+	public Base setObflags(BigInteger obflags) {
 		this.obflags = obflags;
+		return this;
 	}
 
 	/**
@@ -251,8 +259,9 @@ public class Setup implements Base {
 	/**
 	 * @param obname the obname to set
 	 */
-	public void setObname(String obname) {
+	public Base setObname(String obname) {
 		this.obname = obname;
+		return this;
 	}
 
 	/**
@@ -265,8 +274,9 @@ public class Setup implements Base {
 	/**
 	 * @param obalias the obalias to set
 	 */
-	public void setObalias(String obalias) {
+	public Base setObalias(String obalias) {
 		this.obalias = obalias;
+		return this;
 	}
 
 	/**
@@ -279,8 +289,9 @@ public class Setup implements Base {
 	/**
 	 * @param obtitle the obtitle to set
 	 */
-	public void setObtitle(String obtitle) {
+	public Base setObtitle(String obtitle) {
 		this.obtitle = obtitle;
+		return this;
 	}
 
 	/**
@@ -293,8 +304,9 @@ public class Setup implements Base {
 	/**
 	 * @param obdescription the obdescription to set
 	 */
-	public void setObdescription(String obdescription) {
+	public Base setObdescription(String obdescription) {
 		this.obdescription = obdescription;
+		return this;
 	}
 
 	/**
@@ -307,8 +319,9 @@ public class Setup implements Base {
 	/**
 	 * @param obroot the obroot to set
 	 */
-	public void setObroot(String obroot) {
+	public Base setObroot(String obroot) {
 		this.obroot = obroot;
+		return this;
 	}
 	
 	/**
@@ -321,8 +334,9 @@ public class Setup implements Base {
 	/**
 	 * @param obmime the obmime to set
 	 */
-	public void setObmime(String obmime) {
+	public Base setObmime(String obmime) {
 		this.obmime = obmime;
+		return this;
 	}
 
 	/**
@@ -335,8 +349,9 @@ public class Setup implements Base {
 	/**
 	 * @param obdata the obdata to set
 	 */
-	public void setObdata(String obdata) {
+	public Base setObdata(String obdata) {
 		this.obdata = obdata;
+		return this;
 	}
 
 	/**
@@ -349,8 +364,9 @@ public class Setup implements Base {
 	/**
 	 * @param oburi the oburi to set
 	 */
-	public void setOburi(String oburi) {
+	public Base setOburi(String oburi) {
 		this.oburi = oburi;
+		return this;
 	}
 
 	/**
@@ -363,8 +379,9 @@ public class Setup implements Base {
 	/**
 	 * @param oblink the oblink to set
 	 */
-	public void setOblink(String oblink) {
+	public Base setOblink(String oblink) {
 		this.oblink = oblink;
+		return this;
 	}
 	
 	/**
@@ -377,18 +394,20 @@ public class Setup implements Base {
 	/**
 	 * @param linkuuid the linkuuid to set
 	 */
-	public void setLinkuuid(String linkuuid) {
+	public Base setLinkuuid(String linkuuid) {
 		this.linkuuid = linkuuid;
+		return this;
 	}
 
 	/**
 	 * After every change of a property 'refresh' has to be called
 	 */
-	public void refresh() {
+	public Base refresh() {
 		
 		//
 		// To update the mandator, call 'ob:mandator-setup'
 		//
+		return this;
 	}
 
 	// --------------------------------------------------------------------
